@@ -218,11 +218,12 @@ body {
     /* Moved up from 210px */
     right: 50px;
     /* Moved closer to edge */
-    width: 450px;
-    /* Reduced from 550px */
-    height: 253px;
+    width: 520px;
+    /* Increased from 450px for better readability */
+    height: 293px;
     /* Maintain 16:9 ratio */
-    background: rgba(245, 243, 238, 0.15);
+    background: rgba(245, 243, 238, 0.25);
+    /* Increased opacity from 0.15 */
     backdrop-filter: blur(40px) saturate(180%);
     -webkit-backdrop-filter: blur(40px) saturate(180%);
     border-radius: 24px;
@@ -346,37 +347,45 @@ body {
 
 .hero-content h2 {
     font-family: var(--font-display);
-    font-size: 22px;
-    /* Reduced from 28px */
+    font-size: 24px;
+    /* Increased from 22px */
     font-weight: 700;
-    color: var(--champagne);
+    color: #FFFFFF;
+    /* Pure white for better contrast */
     margin: 0 0 4px 0;
     /* Reduced from 6px */
     /* Reduced spacing */
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    text-shadow: 0 3px 12px rgba(0, 0, 0, 0.6);
+    /* Stronger shadow */
 }
 
 .hero-collection {
     font-size: 11px;
     /* Reduced from 12px */
-    color: var(--champagne);
+    color: #F5D76E;
+    /* Brighter champagne for visibility */
     text-transform: uppercase;
     letter-spacing: 1.5px;
     margin-bottom: 6px;
     /* Reduced from 10px */
-    font-weight: 500;
+    font-weight: 600;
+    /* Increased from 500 */
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+    /* Added shadow */
 }
 
 .hero-description {
-    font-size: 11px;
-    /* Reduced from 13px */
-    line-height: 1.4;
-    /* Tighter line height */
-    color: rgba(255, 255, 255, 0.85);
+    font-size: 12px;
+    /* Increased from 11px */
+    line-height: 1.5;
+    /* Increased from 1.4 */
+    color: rgba(255, 255, 255, 0.95);
+    /* Brighter white */
     margin-bottom: 8px;
     /* Reduced from 10px */
     /* Reduced spacing */
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+    /* Stronger shadow */
 }
 
 .hero-actions {

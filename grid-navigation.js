@@ -1,20 +1,54 @@
 // ===== GRID ITEM NAVIGATION SETUP =====
-// This function adds click handlers to all grid items for proper navigation
+// Maps each grid item to its product ID and enables navigation to product detail pages
+
+// Product ID mapping for each frame's grid items (in order)
+const GRID_PRODUCT_MAPPING = {
+    3: [ // Frame 3 - Earrings
+        'diamond-studs',
+        'pearl-drops',
+        'gold-chandbalis',
+        'temple-jewelry'
+    ],
+    4: [ // Frame 4 - Necklaces
+        'gold-chain',
+        'diamond-tennis',
+        'rose-gold-heart',
+        'crystal-choker'
+    ],
+    5: [ // Frame 5 - Rings
+        'gold-band',
+        'rose-gold-stack',
+        'sapphire-royal',
+        'platinum-eternity'
+    ],
+    6: [ // Frame 6 - Bracelets
+        'royal-bangle',
+        'luxury-charm',
+        'hammered-cuff',
+        'classic-tennis'
+    ],
+    7: [ // Frame 7 - Bangles
+        'classic-gold-bangle',
+        'diamond-pair-bangles',
+        'bridal-chooda',
+        'hammered-cuff-bangle'
+    ],
+    8: [ // Frame 8 - Chains (using necklace products)
+        'gold-chain',
+        'diamond-tennis',
+        'rose-gold-heart',
+        'crystal-choker'
+    ],
+    9: [ // Frame 9 - Statement Necklaces
+        'diamond-pendant',
+        'diamond-tennis',
+        'rose-gold-heart',
+        'crystal-choker'
+    ]
+};
 
 function setupGridItemNavigation() {
-    console.log('🔗 Setting up grid item navigation...');
-
-    // Frame 3 - Earrings (grid items are placeholder, no specific navigation needed)
-    // Frame 4 - Necklaces
-    // Frame 5 - Rings
-    // Frame 6 - Bracelets
-    // Frame 7 - Bangles
-    // Frame 8 - Chains
-    // Frame 9 - Statement Necklaces
-
-    // Since grid items are static HTML and represent products,
-    // they should open product detail pages when clicked
-    // For now, we'll add a generic handler that can be customized per frame
+    console.log('🔗 Setting up grid item navigation with product IDs...');
 
     const frames = [3, 4, 5, 6, 7, 8, 9];
 
@@ -23,16 +57,22 @@ function setupGridItemNavigation() {
         if (!frame) return;
 
         const gridItems = frame.querySelectorAll('.grid-item');
+        const productIds = GRID_PRODUCT_MAPPING[frameNum] || [];
+
         gridItems.forEach((item, index) => {
-            // Add data attribute for identification
+            const productId = productIds[index];
+
+            // Add data attributes for identification
             item.setAttribute('data-frame', frameNum);
             item.setAttribute('data-index', index);
+
+            if (productId) {
+                item.setAttribute('data-product-id', productId);
+            }
 
             // Add click handler (only if not already added)
             if (!item.hasAttribute('data-nav-setup')) {
                 item.setAttribute('data-nav-setup', 'true');
-
-                // Make grid item clickable (cursor pointer)
                 item.style.cursor = 'pointer';
 
                 item.addEventListener('click', (e) => {
@@ -42,16 +82,16 @@ function setupGridItemNavigation() {
                     }
 
                     const productName = item.querySelector('p')?.textContent || 'Product';
-                    console.log(`🛍️ Clicked product: ${productName} in Frame ${frameNum}`);
+                    const pid = item.getAttribute('data-product-id');
 
-                    // For now, just log - in a real app, this would open product detail
-                    // You can add: goToProduct(productId) here when product IDs are available
+                    console.log(`🛍️ Clicked product: ${productName} (ID: ${pid}) in Frame ${frameNum}`);
 
-                    // Example: If you want to navigate to a product detail page
-                    // const productId = item.getAttribute('data-product-id');
-                    // if (productId) {
-                    //     goToProduct(productId);
-                    // }
+                    // Navigate to product detail page
+                    if (pid && typeof goToProduct === 'function') {
+                        goToProduct(pid);
+                    } else {
+                        console.warn('⚠️ Product ID not found or goToProduct function not available');
+                    }
                 });
             }
         });

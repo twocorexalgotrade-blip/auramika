@@ -203,33 +203,62 @@ async function goToProduct(productId) {
     console.log(`🔍 Opening product: ${productId}`);
 
     try {
-        // Fetch product details from API
-        const response = await fetch(`${API_BASE_URL}/api/products/${productId}`);
+        let product = null;
 
-        if (!response.ok) {
-            throw new Error('Product not found');
+        // Try to get product from local database first
+        if (typeof PRODUCTS !== 'undefined' && PRODUCTS[productId]) {
+            product = PRODUCTS[productId];
+            console.log('✅ Product loaded from local database');
+        } else {
+            // Fallback to API if not in local database
+            console.log('📡 Fetching product from API...');
+            const response = await fetch(`${API_BASE_URL}/api/products/${productId}`);
+
+            if (!response.ok) {
+                throw new Error('Product not found');
+            }
+
+            product = await response.json();
         }
-
-        const product = await response.json();
 
         // Populate product info
         document.getElementById('productName').textContent = product.name || 'Product Name';
         document.getElementById('productPrice').textContent = `₹${(product.price || 0).toLocaleString()}`;
         document.getElementById('productDescription').textContent = product.description || 'No description available.';
-        document.getElementById('productWeight').textContent = (product.weight || '-') + 'g';
+        document.getElementById('productWeight').textContent = product.weight || '-';
         document.getElementById('productPurity').textContent = product.purity || '-';
         document.getElementById('productCategory').textContent = product.category || '-';
 
         // Set main image
-        document.getElementById('productMainImage').src = product.image_url || product.imageUrl || 'web asset/products/placeholder.png';
+        const imageUrl = product.image_url || product.imageUrl || 'web asset/products/placeholder.png';
+        document.getElementById('productMainImage').src = imageUrl;
         document.getElementById('productMainImage').alt = product.name;
+
+        // Set up thumbnails if multiple images exist
+        const thumbnailsContainer = document.getElementById('productThumbnails');
+        if (thumbnailsContainer) {
+            thumbnailsContainer.innerHTML = '';
+            const images = product.images || [imageUrl];
+            images.forEach((img, idx) => {
+                const thumb = document.createElement('img');
+                thumb.src = img;
+                thumb.alt = `${product.name} view ${idx + 1}`;
+                thumb.className = idx === 0 ? 'active' : '';
+                thumb.onclick = () => {
+                    document.getElementById('productMainImage').src = img;
+                    thumbnailsContainer.querySelectorAll('img').forEach(t => t.classList.remove('active'));
+                    thumb.classList.add('active');
+                };
+                thumbnailsContainer.appendChild(thumb);
+            });
+        }
 
         // Button Logic
         const addToCartBtn = document.querySelector('#frame14 .btn-add-to-cart');
         if (addToCartBtn) {
             addToCartBtn.onclick = () => addToCart(product.id, {
                 name: product.name,
-                imageUrl: product.image_url || product.imageUrl,
+                imageUrl: imageUrl,
                 vendorName: product.vendorName || 'Swarna Setu',
                 price: product.price
             });
@@ -239,31 +268,19 @@ async function goToProduct(productId) {
             buyNowBtn.onclick = () => openCheckout([{
                 productId: product.id,
                 productName: product.name,
-                productImageUrl: product.image_url || product.imageUrl,
+                productImageUrl: imageUrl,
                 vendorName: product.vendorName || 'Swarna Setu',
                 price: product.price,
                 quantity: 1
             }]);
         }
 
-        // Fetch related products (same category, limit 4)
-        const relatedResponse = await fetch(`${API_BASE_URL}/api/products?category=${encodeURIComponent(product.category)}&limit=4`);
-        let relatedProducts = [];
-
-        if (relatedResponse.ok) {
-            relatedProducts = await relatedResponse.json();
-            // Filter out current product
-            relatedProducts = relatedProducts.filter(p => p.id !== productId);
-        }
-
-        renderRelatedProducts(relatedProducts);
-
-        // Navigate to Frame 14
-        goToFrame(13);
+        // Navigate to product detail frame
+        goToFrame(14);
 
     } catch (error) {
-        console.error('Error loading product:', error);
-        alert('Could not load product details. Please try again.');
+        console.error('❌ Error loading product:', error);
+        alert('Sorry, this product could not be loaded. Please try again.');
     }
 }
 

@@ -254,7 +254,7 @@ async function goToProduct(productId) {
         }
 
         // Button Logic
-        const addToCartBtn = document.querySelector('#frame14 .btn-add-to-cart');
+        const addToCartBtn = document.querySelector('#frame13 .btn-add-to-cart');
         if (addToCartBtn) {
             addToCartBtn.onclick = () => addToCart(product.id, {
                 name: product.name,
@@ -263,7 +263,7 @@ async function goToProduct(productId) {
                 price: product.price
             });
         }
-        const buyNowBtn = document.querySelector('#frame14 .btn-buy-now');
+        const buyNowBtn = document.querySelector('#frame13 .btn-buy-now');
         if (buyNowBtn) {
             buyNowBtn.onclick = () => openCheckout([{
                 productId: product.id,
@@ -275,8 +275,8 @@ async function goToProduct(productId) {
             }]);
         }
 
-        // Navigate to product detail frame
-        goToFrame(14);
+        // Navigate to product detail frame (Frame 13)
+        goToFrame(13);
 
     } catch (error) {
         console.error('❌ Error loading product:', error);

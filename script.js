@@ -1257,6 +1257,15 @@ window.addEventListener('load', () => {
     init();
     new GoldDust('frame10', 10); // Store Page
     new GoldDust('frame14', 14); // See All Page
+
+    // Catalog Pages (Frames 15-21)
+    new GoldDust('frame15', 15); // All Earrings
+    new GoldDust('frame16', 16); // All Necklaces
+    new GoldDust('frame17', 17); // All Rings
+    new GoldDust('frame18', 18); // All Bracelets
+    new GoldDust('frame19', 19); // All Bangles
+    new GoldDust('frame20', 20); // All Chains
+    new GoldDust('frame21', 21); // All Statement Necklaces
     populateSeeAllPage();
 });
 

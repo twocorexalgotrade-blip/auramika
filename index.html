@@ -1001,89 +1001,99 @@
     </div>
 
     <!-- Frame 15: All Earrings Catalog -->
-    <div class="frame" id="frame15" data-frame="15">
-        <img src="web asset/5.jpeg" alt="All Earrings" class="frame-image">
+    <div class="frame catalog-page" id="frame15" data-frame="15">
+        <!-- Gold particles canvas will be injected here by JS -->
 
-        <div class="product-showcase">
-            <div class="showcase-heading">
-                <h1>ALL EARRINGS</h1>
-                <p>Complete collection - 10 exquisite pieces</p>
+        <div class="catalog-container">
+            <button class="catalog-back-btn" onclick="goToFrame(3)">← Back to Earrings</button>
+
+            <div class="catalog-header">
+                <h1 class="catalog-title">ALL EARRINGS</h1>
+                <p class="catalog-subtitle">Complete collection - 10 exquisite pieces</p>
             </div>
 
-            <div class="product-grid catalog-grid">
-                <div class="grid-item">
-                    <button class="btn-like-grid" onclick="toggleLike(this)">❤</button>
-                    <div class="grid-image">
+            <div class="catalog-product-grid">
+                <div class="catalog-product-card" onclick="goToProduct(0)">
+                    <button class="btn-like-catalog" onclick="event.stopPropagation(); toggleLike(this)">❤</button>
+                    <div class="catalog-product-image">
                         <img src="web asset/products/diamond_studs.png" alt="Diamond Studs">
                     </div>
-                    <p>Diamond Studs</p>
+                    <h3>Diamond Studs</h3>
+                    <p class="catalog-product-price">₹45,000</p>
                 </div>
-                <div class="grid-item">
-                    <button class="btn-like-grid" onclick="toggleLike(this)">❤</button>
-                    <div class="grid-image">
+                <div class="catalog-product-card" onclick="goToProduct(1)">
+                    <button class="btn-like-catalog" onclick="event.stopPropagation(); toggleLike(this)">❤</button>
+                    <div class="catalog-product-image">
                         <img src="web asset/products/pearl_drops.png" alt="Pearl Drops">
                     </div>
-                    <p>Pearl Drops</p>
+                    <h3>Pearl Drops</h3>
+                    <p class="catalog-product-price">₹32,000</p>
                 </div>
-                <div class="grid-item">
-                    <button class="btn-like-grid" onclick="toggleLike(this)">❤</button>
-                    <div class="grid-image">
+                <div class="catalog-product-card" onclick="goToProduct(2)">
+                    <button class="btn-like-catalog" onclick="event.stopPropagation(); toggleLike(this)">❤</button>
+                    <div class="catalog-product-image">
                         <img src="web asset/products/gold_chandbalis.png" alt="Gold Chandbalis">
                     </div>
-                    <p>Gold Chandbalis</p>
+                    <h3>Gold Chandbalis</h3>
+                    <p class="catalog-product-price">₹28,500</p>
                 </div>
-                <div class="grid-item">
-                    <button class="btn-like-grid" onclick="toggleLike(this)">❤</button>
-                    <div class="grid-image">
+                <div class="catalog-product-card" onclick="goToProduct(3)">
+                    <button class="btn-like-catalog" onclick="event.stopPropagation(); toggleLike(this)">❤</button>
+                    <div class="catalog-product-image">
                         <img src="web asset/products/temple_jewelry.png" alt="Temple Jewelry">
                     </div>
-                    <p>Temple Jewelry</p>
+                    <h3>Temple Jewelry</h3>
+                    <p class="catalog-product-price">₹52,000</p>
                 </div>
-                <div class="grid-item">
-                    <button class="btn-like-grid" onclick="toggleLike(this)">❤</button>
-                    <div class="grid-image">
+                <div class="catalog-product-card" onclick="goToProduct(4)">
+                    <button class="btn-like-catalog" onclick="event.stopPropagation(); toggleLike(this)">❤</button>
+                    <div class="catalog-product-image">
                         <img src="web asset/products/champagne_gold_hoops.png" alt="Champagne Gold Hoops">
                     </div>
-                    <p>Champagne Gold Hoops</p>
+                    <h3>Champagne Gold Hoops</h3>
+                    <p class="catalog-product-price">₹38,000</p>
                 </div>
-                <div class="grid-item">
-                    <button class="btn-like-grid" onclick="toggleLike(this)">❤</button>
-                    <div class="grid-image">
+                <div class="catalog-product-card" onclick="goToProduct(5)">
+                    <button class="btn-like-catalog" onclick="event.stopPropagation(); toggleLike(this)">❤</button>
+                    <div class="catalog-product-image">
                         <img src="web asset/products/pearl_drops.png" alt="Ruby Drops">
                     </div>
-                    <p>Ruby Drops</p>
+                    <h3>Ruby Drops</h3>
+                    <p class="catalog-product-price">₹48,000</p>
                 </div>
-                <div class="grid-item">
-                    <button class="btn-like-grid" onclick="toggleLike(this)">❤</button>
-                    <div class="grid-image">
+                <div class="catalog-product-card" onclick="goToProduct(6)">
+                    <button class="btn-like-catalog" onclick="event.stopPropagation(); toggleLike(this)">❤</button>
+                    <div class="catalog-product-image">
                         <img src="web asset/products/diamond_studs.png" alt="Emerald Studs">
                     </div>
-                    <p>Emerald Studs</p>
+                    <h3>Emerald Studs</h3>
+                    <p class="catalog-product-price">₹55,000</p>
                 </div>
-                <div class="grid-item">
-                    <button class="btn-like-grid" onclick="toggleLike(this)">❤</button>
-                    <div class="grid-image">
+                <div class="catalog-product-card" onclick="goToProduct(7)">
+                    <button class="btn-like-catalog" onclick="event.stopPropagation(); toggleLike(this)">❤</button>
+                    <div class="catalog-product-image">
                         <img src="web asset/products/pearl_drops.png" alt="Sapphire Danglers">
                     </div>
-                    <p>Sapphire Danglers</p>
+                    <h3>Sapphire Danglers</h3>
+                    <p class="catalog-product-price">₹62,000</p>
                 </div>
-                <div class="grid-item">
-                    <button class="btn-like-grid" onclick="toggleLike(this)">❤</button>
-                    <div class="grid-image">
+                <div class="catalog-product-card" onclick="goToProduct(8)">
+                    <button class="btn-like-catalog" onclick="event.stopPropagation(); toggleLike(this)">❤</button>
+                    <div class="catalog-product-image">
                         <img src="web asset/products/champagne_gold_hoops.png" alt="Platinum Hoops">
                     </div>
-                    <p>Platinum Hoops</p>
+                    <h3>Platinum Hoops</h3>
+                    <p class="catalog-product-price">₹72,000</p>
                 </div>
-                <div class="grid-item">
-                    <button class="btn-like-grid" onclick="toggleLike(this)">❤</button>
-                    <div class="grid-image">
+                <div class="catalog-product-card" onclick="goToProduct(9)">
+                    <button class="btn-like-catalog" onclick="event.stopPropagation(); toggleLike(this)">❤</button>
+                    <div class="catalog-product-image">
                         <img src="web asset/products/gold_chandbalis.png" alt="Antique Jhumkas">
                     </div>
-                    <p>Antique Jhumkas</p>
+                    <h3>Antique Jhumkas</h3>
+                    <p class="catalog-product-price">₹42,000</p>
                 </div>
             </div>
-
-            <button class="btn-see-all" onclick="goToFrame(3)">← Back to Earrings</button>
         </div>
     </div>
 

@@ -304,7 +304,9 @@ async function generateAIImage() {
     console.log("🎨 Sending Prompt to AI:", prompt);
 
     // Ensure we have a valid base URL
-    const baseUrl = (typeof API_BASE_URL !== 'undefined') ? API_BASE_URL : 'http://localhost:3000';
+    const baseUrl = window.location.hostname === 'localhost'
+        ? 'http://localhost:3000'
+        : 'https://swarna-setu-api.onrender.com';
 
     try {
         const response = await fetch(`${baseUrl}/api/generate-design`, {

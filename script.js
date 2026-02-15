@@ -28,7 +28,10 @@ const VIDEO_PATHS = {
     t10: null // No video for Frame 11 transition
 };
 
-const API_BASE_URL = 'http://localhost:3000';
+// API Configuration - Use production backend on Render, fallback to localhost for development
+const API_BASE_URL = window.location.hostname === 'localhost'
+    ? 'http://localhost:3000'
+    : 'https://swarna-setu-api.onrender.com';
 
 
 // ===== SHOP PAGE LOGIC =====

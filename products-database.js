@@ -59,6 +59,62 @@ const PRODUCTS = {
         collection: 'Heritage Collection',
         images: ['web asset/products/champagne_gold_hoops.png']
     },
+    'ruby-drops': {
+        id: 'ruby-drops',
+        name: 'Ruby Drop Earrings',
+        category: 'Earrings',
+        price: 82000,
+        description: 'Exquisite ruby drop earrings set in 18K gold with diamond accents. Vibrant red gemstones.',
+        imageUrl: 'web asset/products/pearl_drops.png',
+        weight: '6.5g',
+        purity: '18K Gold',
+        images: ['web asset/products/pearl_drops.png']
+    },
+    'emerald-studs': {
+        id: 'emerald-studs',
+        name: 'Emerald Studs',
+        category: 'Earrings',
+        price: 95000,
+        description: 'Brilliant emerald studs surrounded by diamonds in platinum setting. Luxurious green sparkle.',
+        imageUrl: 'web asset/products/diamond_studs.png',
+        weight: '4.8g',
+        purity: 'Platinum 950',
+        images: ['web asset/products/diamond_studs.png']
+    },
+    'sapphire-danglers': {
+        id: 'sapphire-danglers',
+        name: 'Sapphire Dangler Earrings',
+        category: 'Earrings',
+        price: 105000,
+        description: 'Elegant sapphire dangler earrings with cascading design. Royal blue gemstones in white gold.',
+        imageUrl: 'web asset/products/pearl_drops.png',
+        weight: '8.2g',
+        purity: '18K White Gold',
+        images: ['web asset/products/pearl_drops.png']
+    },
+    'platinum-hoops': {
+        id: 'platinum-hoops',
+        name: 'Platinum Hoop Earrings',
+        category: 'Earrings',
+        price: 125000,
+        description: 'Modern platinum hoops with diamond pavé setting. Contemporary luxury.',
+        imageUrl: 'web asset/products/champagne_gold_hoops.png',
+        weight: '9.5g',
+        purity: 'Platinum 950',
+        images: ['web asset/products/champagne_gold_hoops.png']
+    },
+    'antique-jhumkas': {
+        id: 'antique-jhumkas',
+        name: 'Antique Gold Jhumkas',
+        category: 'Earrings',
+        price: 68000,
+        description: 'Traditional antique gold jhumkas with intricate filigree work. Heritage Indian craftsmanship.',
+        imageUrl: 'web asset/products/gold_chandbalis.png',
+        weight: '11.5g',
+        purity: '22K Gold',
+        collection: 'Heritage Collection',
+        images: ['web asset/products/gold_chandbalis.png']
+    },
 
     // ===== NECKLACES =====
     'gold-chain': {
@@ -117,6 +173,63 @@ const PRODUCTS = {
         collection: 'Heirloom Series',
         images: ['web asset/products/diamond_necklace.png']
     },
+    'kundan-set': {
+        id: 'kundan-set',
+        name: 'Kundan Necklace Set',
+        category: 'Necklaces',
+        price: 195000,
+        description: 'Traditional Kundan necklace with uncut diamonds and gemstones. Royal Rajasthani craftsmanship.',
+        imageUrl: 'web asset/products/gold_chain.png',
+        weight: '52.5g',
+        purity: '22K Gold',
+        collection: 'Royal Collection',
+        images: ['web asset/products/gold_chain.png']
+    },
+    'polki-necklace': {
+        id: 'polki-necklace',
+        name: 'Polki Diamond Necklace',
+        category: 'Necklaces',
+        price: 325000,
+        description: 'Exquisite polki diamond necklace with traditional design. Uncut diamond brilliance.',
+        imageUrl: 'web asset/products/diamond_tennis.png',
+        weight: '48.8g',
+        purity: '22K Gold',
+        collection: 'Heritage Collection',
+        images: ['web asset/products/diamond_tennis.png']
+    },
+    'emerald-choker-necklace': {
+        id: 'emerald-choker-necklace',
+        name: 'Emerald Choker Necklace',
+        category: 'Necklaces',
+        price: 285000,
+        description: 'Stunning emerald choker with diamond accents. Perfect for special occasions.',
+        imageUrl: 'web asset/products/crystal_choker.png',
+        weight: '38.5g',
+        purity: '18K White Gold',
+        images: ['web asset/products/crystal_choker.png']
+    },
+    'ruby-pendant-necklace': {
+        id: 'ruby-pendant-necklace',
+        name: 'Ruby Pendant Necklace',
+        category: 'Necklaces',
+        price: '155000',
+        description: 'Elegant ruby pendant necklace with diamond halo. Vibrant red centerpiece.',
+        imageUrl: 'web asset/products/rose_gold_pendant.png',
+        weight: '12.5g',
+        purity: '18K Rose Gold',
+        images: ['web asset/products/rose_gold_pendant.png']
+    },
+    'pearl-strand-necklace': {
+        id: 'pearl-strand-necklace',
+        name: 'Pearl Strand Necklace',
+        category: 'Necklaces',
+        price: 85000,
+        description: 'Classic pearl strand necklace with gold clasp. Timeless elegance.',
+        imageUrl: 'web asset/products/rose_gold_pendant.png',
+        weight: '28.5g',
+        purity: '18K Gold',
+        images: ['web asset/products/rose_gold_pendant.png']
+    },
 
     // ===== RINGS =====
     'gold-band': {
@@ -173,6 +286,62 @@ const PRODUCTS = {
         weight: '4.5g',
         purity: 'Platinum 950',
         collection: 'Engagement Series',
+        images: ['web asset/products/diamond_solitaire.png']
+    },
+    'emerald-ring': {
+        id: 'emerald-ring',
+        name: 'Emerald Cocktail Ring',
+        category: 'Rings',
+        price: 215000,
+        description: 'Stunning emerald cocktail ring with diamond halo. Statement piece for special occasions.',
+        imageUrl: 'web asset/products/diamond_solitaire.png',
+        weight: '8.5g',
+        purity: '18K White Gold',
+        images: ['web asset/products/diamond_solitaire.png']
+    },
+    'ruby-band-ring': {
+        id: 'ruby-band-ring',
+        name: 'Ruby Band Ring',
+        category: 'Rings',
+        price: 145000,
+        description: 'Elegant ruby band ring with channel-set stones. Vibrant red brilliance.',
+        imageUrl: 'web asset/products/rose_gold_pendant.png',
+        weight: '6.8g',
+        purity: '18K Rose Gold',
+        images: ['web asset/products/rose_gold_pendant.png']
+    },
+    'pearl-ring': {
+        id: 'pearl-ring',
+        name: 'Pearl Solitaire Ring',
+        category: 'Rings',
+        price: 55000,
+        description: 'Classic pearl solitaire ring with gold band. Timeless elegance.',
+        imageUrl: 'web asset/products/rose_gold_pendant.png',
+        weight: '4.2g',
+        purity: '18K Gold',
+        images: ['web asset/products/rose_gold_pendant.png']
+    },
+    'antique-ring': {
+        id: 'antique-ring',
+        name: 'Antique Gold Ring',
+        category: 'Rings',
+        price: 78000,
+        description: 'Traditional antique gold ring with intricate engraving. Heritage design.',
+        imageUrl: 'web asset/products/gold_band.png',
+        weight: '7.5g',
+        purity: '22K Gold',
+        collection: 'Heritage Collection',
+        images: ['web asset/products/gold_band.png']
+    },
+    'cocktail-ring': {
+        id: 'cocktail-ring',
+        name: 'Diamond Cocktail Ring',
+        category: 'Rings',
+        price: 285000,
+        description: 'Dazzling diamond cocktail ring with multi-stone design. Bold statement piece.',
+        imageUrl: 'web asset/products/diamond_solitaire.png',
+        weight: '9.8g',
+        purity: 'Platinum 950',
         images: ['web asset/products/diamond_solitaire.png']
     },
 
@@ -233,6 +402,61 @@ const PRODUCTS = {
         collection: 'Vogue Series',
         images: ['web asset/products/diamond_bangle_set.png']
     },
+    'pearl-bracelet': {
+        id: 'pearl-bracelet',
+        name: 'Pearl Bracelet',
+        category: 'Bracelets',
+        price: 68000,
+        description: 'Elegant pearl bracelet with gold spacers. Classic sophistication.',
+        imageUrl: 'web asset/products/charm_bracelet.png',
+        weight: '15.5g',
+        purity: '18K Gold',
+        images: ['web asset/products/charm_bracelet.png']
+    },
+    'ruby-bracelet': {
+        id: 'ruby-bracelet',
+        name: 'Ruby Tennis Bracelet',
+        category: 'Bracelets',
+        price: 225000,
+        description: 'Stunning ruby tennis bracelet with diamond accents. Vibrant red brilliance.',
+        imageUrl: 'web asset/products/diamond_tennis_bracelet_ar.png',
+        weight: '16.8g',
+        purity: '18K White Gold',
+        images: ['web asset/products/diamond_tennis_bracelet_ar.png']
+    },
+    'emerald-bangle-bracelet': {
+        id: 'emerald-bangle-bracelet',
+        name: 'Emerald Bangle Bracelet',
+        category: 'Bracelets',
+        price: 185000,
+        description: 'Exquisite emerald bangle bracelet with intricate design. Luxurious green gemstones.',
+        imageUrl: 'web asset/products/gold_bangle.png',
+        weight: '22.5g',
+        purity: '18K Gold',
+        images: ['web asset/products/gold_bangle.png']
+    },
+    'link-bracelet': {
+        id: 'link-bracelet',
+        name: 'Gold Link Bracelet',
+        category: 'Bracelets',
+        price: 95000,
+        description: 'Classic gold link bracelet with polished finish. Timeless design.',
+        imageUrl: 'web asset/products/charm_bracelet.png',
+        weight: '18.2g',
+        purity: '22K Gold',
+        images: ['web asset/products/charm_bracelet.png']
+    },
+    'chain-bracelet': {
+        id: 'chain-bracelet',
+        name: 'Diamond Chain Bracelet',
+        category: 'Bracelets',
+        price: 165000,
+        description: 'Modern diamond chain bracelet with contemporary design. Elegant sparkle.',
+        imageUrl: 'web asset/products/diamond_tennis_bracelet_ar.png',
+        weight: '12.8g',
+        purity: 'Platinum 950',
+        images: ['web asset/products/diamond_tennis_bracelet_ar.png']
+    },
 
     // ===== BANGLES =====
     'classic-gold-bangle': {
@@ -291,6 +515,63 @@ const PRODUCTS = {
         collection: 'Heirloom Series',
         images: ['web asset/products/gold_bangle.png']
     },
+    'kundan-bangles': {
+        id: 'kundan-bangles',
+        name: 'Kundan Bangle Set',
+        category: 'Bangles',
+        price: 195000,
+        description: 'Traditional Kundan bangle set with uncut diamonds. Royal Rajasthani craftsmanship.',
+        imageUrl: 'web asset/products/diamond_bangle_set.png',
+        weight: '42.5g',
+        purity: '22K Gold',
+        collection: 'Royal Collection',
+        images: ['web asset/products/diamond_bangle_set.png']
+    },
+    'polki-bangle-set': {
+        id: 'polki-bangle-set',
+        name: 'Polki Bangle Set',
+        category: 'Bangles',
+        price: 285000,
+        description: 'Exquisite polki bangle set with traditional design. Uncut diamond brilliance.',
+        imageUrl: 'web asset/products/diamond_bangle_set.png',
+        weight: '48.8g',
+        purity: '22K Gold',
+        collection: 'Heritage Collection',
+        images: ['web asset/products/diamond_bangle_set.png']
+    },
+    'meenakari-bangles': {
+        id: 'meenakari-bangles',
+        name: 'Meenakari Enamel Bangles',
+        category: 'Bangles',
+        price: 145000,
+        description: 'Colorful meenakari enamel bangles with intricate patterns. Traditional artistry.',
+        imageUrl: 'web asset/products/gold_bangle.png',
+        weight: '38.5g',
+        purity: '22K Gold',
+        images: ['web asset/products/gold_bangle.png']
+    },
+    'stone-bangles': {
+        id: 'stone-bangles',
+        name: 'Precious Stone Bangles',
+        category: 'Bangles',
+        price: 265000,
+        description: 'Luxurious bangles with precious stones and diamonds. Multi-color brilliance.',
+        imageUrl: 'web asset/products/diamond_bangle_set.png',
+        weight: '45.2g',
+        purity: '18K Gold',
+        images: ['web asset/products/diamond_bangle_set.png']
+    },
+    'designer-bangle-set': {
+        id: 'designer-bangle-set',
+        name: 'Designer Bangle Set',
+        category: 'Bangles',
+        price: 175000,
+        description: 'Contemporary designer bangle set with modern aesthetics. Fashion-forward elegance.',
+        imageUrl: 'web asset/products/gold_bangle.png',
+        weight: '35.8g',
+        purity: '18K Gold',
+        images: ['web asset/products/gold_bangle.png']
+    },
 
     // ===== CHAINS =====
     'classic-rope-chain': {
@@ -335,6 +616,72 @@ const PRODUCTS = {
         imageUrl: 'web asset/products/gold_chain.png',
         weight: '24.5g',
         purity: '22K Gold',
+        images: ['web asset/products/gold_chain.png']
+    },
+    'wheat-chain': {
+        id: 'wheat-chain',
+        name: 'Wheat Gold Chain',
+        category: 'Chains',
+        price: 105000,
+        description: 'Elegant wheat pattern chain in 22K gold. Classic Italian design.',
+        imageUrl: 'web asset/products/gold_chain.png',
+        weight: '26.5g',
+        purity: '22K Gold',
+        images: ['web asset/products/gold_chain.png']
+    },
+    'curb-chain': {
+        id: 'curb-chain',
+        name: 'Curb Link Chain',
+        category: 'Chains',
+        price: 88000,
+        description: 'Bold curb link chain in 18K gold. Modern masculine design.',
+        imageUrl: 'web asset/products/gold_chain.png',
+        weight: '32.5g',
+        purity: '18K Gold',
+        images: ['web asset/products/gold_chain.png']
+    },
+    'singapore-chain': {
+        id: 'singapore-chain',
+        name: 'Singapore Chain',
+        category: 'Chains',
+        price: 72000,
+        description: 'Delicate Singapore chain with diamond-cut links. Sparkling elegance.',
+        imageUrl: 'web asset/products/gold_chain.png',
+        weight: '14.5g',
+        purity: '18K Gold',
+        images: ['web asset/products/gold_chain.png']
+    },
+    'franco-chain': {
+        id: 'franco-chain',
+        name: 'Franco Chain',
+        category: 'Chains',
+        price: 125000,
+        description: 'Luxurious franco chain in platinum. Contemporary sophistication.',
+        imageUrl: 'web asset/products/diamond_tennis.png',
+        weight: '28.8g',
+        purity: 'Platinum 950',
+        images: ['web asset/products/diamond_tennis.png']
+    },
+    'mariner-chain': {
+        id: 'mariner-chain',
+        name: 'Mariner Link Chain',
+        category: 'Chains',
+        price: 98000,
+        description: 'Classic mariner link chain in 22K gold. Nautical-inspired design.',
+        imageUrl: 'web asset/products/gold_chain.png',
+        weight: '24.2g',
+        purity: '22K Gold',
+        images: ['web asset/products/gold_chain.png']
+    },
+    'cable-chain': {
+        id: 'cable-chain',
+        name: 'Cable Chain',
+        category: 'Chains',
+        price: 65000,
+        description: 'Simple cable chain in 18K gold. Versatile and timeless.',
+        imageUrl: 'web asset/products/gold_chain.png',
+        weight: '16.5g',
+        purity: '18K Gold',
         images: ['web asset/products/gold_chain.png']
     },
 
@@ -385,6 +732,78 @@ const PRODUCTS = {
         weight: '38.5g',
         purity: '18K White Gold',
         images: ['web asset/products/crystal_choker.png']
+    },
+    'kundan-haar': {
+        id: 'kundan-haar',
+        name: 'Kundan Haar Necklace',
+        category: 'Statement Necklaces',
+        price: 385000,
+        description: 'Grand Kundan haar with uncut diamonds and precious stones. Royal bridal statement.',
+        imageUrl: 'web asset/products/gold_chain.png',
+        weight: '95.5g',
+        purity: '22K Gold',
+        collection: 'Bridal Series',
+        images: ['web asset/products/gold_chain.png']
+    },
+    'polki-statement-set': {
+        id: 'polki-statement-set',
+        name: 'Polki Statement Set',
+        category: 'Statement Necklaces',
+        price: 485000,
+        description: 'Magnificent polki statement necklace with traditional design. Museum-quality craftsmanship.',
+        imageUrl: 'web asset/products/diamond_tennis.png',
+        weight: '108.8g',
+        purity: '22K Gold',
+        collection: 'Royal Collection',
+        images: ['web asset/products/diamond_tennis.png']
+    },
+    'meenakari-necklace': {
+        id: 'meenakari-necklace',
+        name: 'Meenakari Statement Necklace',
+        category: 'Statement Necklaces',
+        price: 225000,
+        description: 'Colorful meenakari enamel necklace with intricate patterns. Traditional Rajasthani art.',
+        imageUrl: 'web asset/products/gold_chain.png',
+        weight: '68.5g',
+        purity: '22K Gold',
+        collection: 'Heritage Collection',
+        images: ['web asset/products/gold_chain.png']
+    },
+    'jadau-set': {
+        id: 'jadau-set',
+        name: 'Jadau Necklace Set',
+        category: 'Statement Necklaces',
+        price: 425000,
+        description: 'Exquisite jadau necklace with gemstone setting. Royal Mughal craftsmanship.',
+        imageUrl: 'web asset/products/diamond_necklace.png',
+        weight: '92.5g',
+        purity: '22K Gold',
+        collection: 'Royal Collection',
+        images: ['web asset/products/diamond_necklace.png']
+    },
+    'bridal-statement-set': {
+        id: 'bridal-statement-set',
+        name: 'Bridal Statement Set',
+        category: 'Statement Necklaces',
+        price: 525000,
+        description: 'Grand bridal necklace set with diamonds and precious stones. Complete wedding elegance.',
+        imageUrl: 'web asset/products/diamond_tennis.png',
+        weight: '125.8g',
+        purity: '22K Gold',
+        collection: 'Bridal Series',
+        images: ['web asset/products/diamond_tennis.png']
+    },
+    'royal-collar-necklace': {
+        id: 'royal-collar-necklace',
+        name: 'Royal Collar Necklace',
+        category: 'Statement Necklaces',
+        price: 565000,
+        description: 'Magnificent royal collar necklace with diamonds and sapphires. Ultimate luxury statement.',
+        imageUrl: 'web asset/products/diamond_tennis.png',
+        weight: '145.2g',
+        purity: 'Platinum 950',
+        collection: 'Royal Collection',
+        images: ['web asset/products/diamond_tennis.png']
     }
 };
 

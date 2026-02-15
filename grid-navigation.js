@@ -3,47 +3,89 @@
 
 // Product ID mapping for each frame's grid items (in order)
 const GRID_PRODUCT_MAPPING = {
-    3: [ // Frame 3 - Earrings
+    3: [ // Frame 3 - Earrings (10 products)
         'diamond-studs',
         'pearl-drops',
         'gold-chandbalis',
-        'temple-jewelry'
+        'temple-jewelry',
+        'champagne-gold-hoops',
+        'ruby-drops',
+        'emerald-studs',
+        'sapphire-danglers',
+        'platinum-hoops',
+        'antique-jhumkas'
     ],
-    4: [ // Frame 4 - Necklaces
+    4: [ // Frame 4 - Necklaces (10 products)
         'gold-chain',
         'diamond-tennis',
         'rose-gold-heart',
-        'crystal-choker'
+        'crystal-choker',
+        'diamond-pendant',
+        'kundan-set',
+        'polki-necklace',
+        'emerald-choker-necklace',
+        'ruby-pendant-necklace',
+        'pearl-strand-necklace'
     ],
-    5: [ // Frame 5 - Rings
+    5: [ // Frame 5 - Rings (10 products)
         'gold-band',
         'rose-gold-stack',
         'sapphire-royal',
-        'platinum-eternity'
+        'platinum-eternity',
+        'diamond-solitaire',
+        'emerald-ring',
+        'ruby-band-ring',
+        'pearl-ring',
+        'antique-ring',
+        'cocktail-ring'
     ],
-    6: [ // Frame 6 - Bracelets
+    6: [ // Frame 6 - Bracelets (10 products)
         'royal-bangle',
         'luxury-charm',
         'hammered-cuff',
-        'classic-tennis'
+        'classic-tennis',
+        'platinum-weave',
+        'pearl-bracelet',
+        'ruby-bracelet',
+        'emerald-bangle-bracelet',
+        'link-bracelet',
+        'chain-bracelet'
     ],
-    7: [ // Frame 7 - Bangles
+    7: [ // Frame 7 - Bangles (10 products)
         'classic-gold-bangle',
         'diamond-pair-bangles',
         'bridal-chooda',
-        'hammered-cuff-bangle'
+        'hammered-cuff-bangle',
+        'temple-masterpiece',
+        'kundan-bangles',
+        'polki-bangle-set',
+        'meenakari-bangles',
+        'stone-bangles',
+        'designer-bangle-set'
     ],
-    8: [ // Frame 8 - Chains
+    8: [ // Frame 8 - Chains (10 products)
         'classic-rope-chain',
         'box-chain-platinum',
         'figaro-gold-chain',
-        'snake-chain-deluxe'
+        'snake-chain-deluxe',
+        'wheat-chain',
+        'curb-chain',
+        'singapore-chain',
+        'franco-chain',
+        'mariner-chain',
+        'cable-chain'
     ],
-    9: [ // Frame 9 - Statement Necklaces
+    9: [ // Frame 9 - Statement Necklaces (10 products)
         'layered-pearl-statement',
         'emerald-collar-necklace',
         'antique-temple-necklace',
-        'crystal-bib-necklace'
+        'crystal-bib-necklace',
+        'kundan-haar',
+        'polki-statement-set',
+        'meenakari-necklace',
+        'jadau-set',
+        'bridal-statement-set',
+        'royal-collar-necklace'
     ]
 };
 

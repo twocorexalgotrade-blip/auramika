@@ -8,15 +8,21 @@ const listEndpoints = require('express-list-endpoints');
 const { Server } = require('socket.io');
 const { v4: uuidv4 } = require('uuid');
 const http = require('http');
-const OpenAI = require('openai'); // OpenAI Import
+const compression = require('compression'); // Gzip compression for faster transfers
+// Initialize OpenAI (optional - only if API key is provided)
+let openai = null;
+if (process.env.OPENAI_API_KEY) {
+    const OpenAI = require('openai');
+    openai = new OpenAI({
+        apiKey: process.env.OPENAI_API_KEY,
+    });
+    console.log('✅ OpenAI initialized');
+} else {
+    console.log('⚠️  OpenAI API key not found - AI features will be disabled');
+}
 
 const app = express();
 const server = http.createServer(app);
-
-// Initialize OpenAI
-const openai = new OpenAI({
-    apiKey: process.env.OPENAI_API_KEY,
-});
 
 const io = new Server(server, {
     cors: {
@@ -29,7 +35,7 @@ const PORT = process.env.PORT || 3000;
 // --- DATABASE CONNECTION ---
 const pool = new Pool({
     connectionString: process.env.DATABASE_URL || 'postgres://localhost:5432/swarnasetu',
-    ssl: false // Disable SSL for local development
+    ssl: process.env.DATABASE_URL ? { rejectUnauthorized: false } : false // Enable SSL for production (Render)
 });
 
 // --- TABLE CREATION FUNCTIONS ---
@@ -206,12 +212,22 @@ const createCallHistoryTable = async () => {
 };
 
 // Middleware
+app.use(compression()); // Enable gzip compression (reduces transfer size by ~70%)
 app.use(cors());
 app.use(express.json({ limit: '50mb' }));
 
-// Serve static files from parent directory (for frontend)
+// Serve static files from parent directory (for frontend) with caching
 const path = require('path');
-app.use(express.static(path.join(__dirname, '..')));
+app.use(express.static(path.join(__dirname, '..'), {
+    maxAge: '1d', // Cache static files for 1 day
+    etag: true,
+    setHeaders: (res, filePath) => {
+        // Cache videos and images longer
+        if (filePath.endsWith('.mp4') || filePath.endsWith('.png') || filePath.endsWith('.jpg')) {
+            res.setHeader('Cache-Control', 'public, max-age=604800'); // 7 days
+        }
+    }
+}));
 app.use(express.static('public')); // Serve static files from 'public' directory
 
 // --- DATABASE MIGRATIONS ---
@@ -331,6 +347,52 @@ app.delete('/api/admin/users/:id', async (req, res) => {
     } catch (err) {
         console.error(err);
         res.status(500).json({ error: 'Failed to delete user' });
+    }
+});
+
+// --- DATABASE SEED ENDPOINT (for production setup) ---
+app.post('/api/seed-database', async (req, res) => {
+    try {
+        const vendorId = 'store1';
+
+        // Seed Shop first
+        await pool.query(
+            'INSERT INTO shops (vendor_id, shop_name, shop_address, logo_url) VALUES ($1, $2, $3, $4) ON CONFLICT (vendor_id) DO NOTHING',
+            [vendorId, 'SAGAR GOLD', 'Mumbai, India', 'web asset/logos/sagar_gold.png']
+        );
+
+        const products = [
+            { name: 'Imperial Polki Necklace', description: 'A masterpiece of unfinished diamonds set in 22K gold.', price: 250000, weight: 45.0, category: 'Necklaces', purity: '22K', image_url: 'web asset/products/temple_jewelry.png' },
+            { name: 'Gold Chain Collection', description: 'Exquisite handcrafted gold chains showing traditional artistry.', price: 45000, weight: 8.5, category: 'Necklaces', purity: '22K', image_url: 'web asset/products/gold_chain.png' },
+            { name: 'Royal Kundan Choker', description: 'Regal choker necklace capable of elevating any bridal look.', price: 180000, weight: 32.0, category: 'Necklaces', purity: '22K', image_url: 'web asset/products/crystal_choker.png' },
+            { name: 'Sleek Gold Bangles', description: 'Set of 4 daily wear gold bangles.', price: 68000, weight: 12.5, category: 'Bangles', purity: '22K', image_url: 'web asset/products/gold_bangle.png' },
+            { name: 'Diamond Solitaire Ring', description: 'A timeless symbol of love, featuring a 1ct solitaire.', price: 320000, weight: 4.5, category: 'Rings', purity: '18K', image_url: 'web asset/products/diamond_solitaire.png' },
+            { name: 'Sapphire & Diamond Ring', description: 'Deep blue sapphire surrounded by a halo of diamonds.', price: 85000, weight: 5.2, category: 'Rings', purity: '18K', image_url: 'web asset/products/sapphire_ring.png' },
+            { name: 'Thick Gold Chain', description: 'Heavy weight gold chain statement piece.', price: 110000, weight: 22.0, category: 'Necklaces', purity: '22K', image_url: 'web asset/products/thick_gold_chain.png' },
+            { name: 'Rose Gold Pendant', description: 'Delicate rose gold pendant for modern elegance.', price: 18000, weight: 3.5, category: 'Pendants', purity: '18K', image_url: 'web asset/products/rose_gold_pendant.png' },
+            { name: 'Diamond Tennis Bracelet', description: 'A continuous line of brilliant-cut diamonds.', price: 145000, weight: 10.0, category: 'Bracelets', purity: '18K', image_url: 'web asset/products/diamond_tennis_bracelet.png' },
+            { name: 'Antique Gold Chandbalis', description: 'Traditional earrings with intricate gold filigree work.', price: 55000, weight: 15.0, category: 'Earrings', purity: '22K', image_url: 'web asset/products/gold_chandbalis.png' }
+        ];
+
+        // Clear existing products for this vendor
+        await pool.query('DELETE FROM products WHERE vendor_id = $1', [vendorId]);
+
+        let insertedCount = 0;
+        for (const p of products) {
+            await pool.query(
+                'INSERT INTO products (name, description, price, weight_grams, category, purity, image_url, vendor_id, in_stock) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, true)',
+                [p.name, p.description, p.price, p.weight, p.category, p.purity, p.image_url, vendorId]
+            );
+            insertedCount++;
+        }
+
+        res.json({
+            success: true,
+            message: `Database seeded successfully! Inserted ${insertedCount} products for ${vendorId}`
+        });
+    } catch (err) {
+        console.error('Seed error:', err);
+        res.status(500).json({ error: 'Failed to seed database', details: err.message });
     }
 });
 

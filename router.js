@@ -15,7 +15,14 @@ const frameRoutes = {
     11: 'profile',
     12: null, // Shop pages use dynamic routes
     13: 'custom-order',
-    14: null  // Product pages use dynamic routes
+    14: null,  // Product pages use dynamic routes
+    15: 'earrings/all',
+    16: 'necklaces/all',
+    17: 'rings/all',
+    18: 'bracelets/all',
+    19: 'bangles/all',
+    20: 'chains/all',
+    21: 'statement-necklaces/all'
 };
 
 // Reverse mapping: URL hash -> frame number

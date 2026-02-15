@@ -290,6 +290,101 @@ const PRODUCTS = {
         purity: '22K Gold',
         collection: 'Heirloom Series',
         images: ['web asset/products/gold_bangle.png']
+    },
+
+    // ===== CHAINS =====
+    'classic-rope-chain': {
+        id: 'classic-rope-chain',
+        name: 'Classic Rope Chain',
+        category: 'Chains',
+        price: 95000,
+        description: 'Traditional 22K gold rope chain with intricate twisted design. Perfect for pendants or standalone wear.',
+        imageUrl: 'web asset/products/gold_chain.png',
+        weight: '22.5g',
+        purity: '22K Gold',
+        images: ['web asset/products/gold_chain.png']
+    },
+    'box-chain-platinum': {
+        id: 'box-chain-platinum',
+        name: 'Platinum Box Chain',
+        category: 'Chains',
+        price: 145000,
+        description: 'Sleek platinum box chain with modern design. Durable and elegant for everyday luxury.',
+        imageUrl: 'web asset/products/diamond_tennis.png',
+        weight: '18.8g',
+        purity: 'Platinum 950',
+        images: ['web asset/products/diamond_tennis.png']
+    },
+    'figaro-gold-chain': {
+        id: 'figaro-gold-chain',
+        name: 'Figaro Gold Chain',
+        category: 'Chains',
+        price: 78000,
+        description: 'Classic figaro pattern chain in 18K gold. Timeless Italian design.',
+        imageUrl: 'web asset/products/gold_chain.png',
+        weight: '16.2g',
+        purity: '18K Gold',
+        images: ['web asset/products/gold_chain.png']
+    },
+    'snake-chain-deluxe': {
+        id: 'snake-chain-deluxe',
+        name: 'Deluxe Snake Chain',
+        category: 'Chains',
+        price: 112000,
+        description: 'Smooth snake chain in 22K gold with fluid movement. Contemporary elegance.',
+        imageUrl: 'web asset/products/gold_chain.png',
+        weight: '24.5g',
+        purity: '22K Gold',
+        images: ['web asset/products/gold_chain.png']
+    },
+
+    // ===== STATEMENT NECKLACES =====
+    'layered-pearl-statement': {
+        id: 'layered-pearl-statement',
+        name: 'Layered Pearl Statement',
+        category: 'Statement Necklaces',
+        price: 185000,
+        description: 'Multi-layered pearl necklace with gold accents. Bold and sophisticated statement piece.',
+        imageUrl: 'web asset/products/diamond_necklace.png',
+        weight: '45.8g',
+        purity: '22K Gold',
+        collection: 'Bridal Series',
+        images: ['web asset/products/diamond_necklace.png']
+    },
+    'emerald-collar-necklace': {
+        id: 'emerald-collar-necklace',
+        name: 'Emerald Collar Necklace',
+        category: 'Statement Necklaces',
+        price: 425000,
+        description: 'Stunning emerald and diamond collar necklace. Royal elegance for special occasions.',
+        imageUrl: 'web asset/products/diamond_tennis.png',
+        weight: '62.5g',
+        purity: '18K White Gold',
+        collection: 'Royal Collection',
+        images: ['web asset/products/diamond_tennis.png']
+    },
+    'antique-temple-necklace': {
+        id: 'antique-temple-necklace',
+        name: 'Antique Temple Necklace',
+        category: 'Statement Necklaces',
+        price: 295000,
+        description: 'Traditional temple jewelry necklace with goddess motifs and ruby accents. Heritage craftsmanship.',
+        imageUrl: 'web asset/products/gold_chain.png',
+        weight: '85.2g',
+        purity: '22K Gold',
+        collection: 'Heritage Collection',
+        images: ['web asset/products/gold_chain.png']
+    },
+    'crystal-bib-necklace': {
+        id: 'crystal-bib-necklace',
+        name: 'Crystal Bib Necklace',
+        category: 'Statement Necklaces',
+        price: 165000,
+        description: 'Modern crystal bib necklace with geometric design. Contemporary statement for evening wear.',
+        imageUrl: 'web asset/products/crystal_choker.png',
+        weight: '38.5g',
+        purity: '18K White Gold',
+        images: ['web asset/products/crystal_choker.png']
     }
 };
 

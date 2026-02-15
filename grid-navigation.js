@@ -33,17 +33,17 @@ const GRID_PRODUCT_MAPPING = {
         'bridal-chooda',
         'hammered-cuff-bangle'
     ],
-    8: [ // Frame 8 - Chains (using necklace products)
-        'gold-chain',
-        'diamond-tennis',
-        'rose-gold-heart',
-        'crystal-choker'
+    8: [ // Frame 8 - Chains
+        'classic-rope-chain',
+        'box-chain-platinum',
+        'figaro-gold-chain',
+        'snake-chain-deluxe'
     ],
     9: [ // Frame 9 - Statement Necklaces
-        'diamond-pendant',
-        'diamond-tennis',
-        'rose-gold-heart',
-        'crystal-choker'
+        'layered-pearl-statement',
+        'emerald-collar-necklace',
+        'antique-temple-necklace',
+        'crystal-bib-necklace'
     ]
 };
 

@@ -2727,10 +2727,13 @@ select option {
     .product-title {
         font-size: 1.1rem;
     }
-}/* ===== CATALOG PAGES (Frames 15-21) ===== */
+}
+
+/* ===== CATALOG PAGES (Frames 15-21) ===== */
 .catalog-page {
     background: linear-gradient(135deg, #FFFFFF 0%, #F8F6F3 100%);
-    position: relative;
+    position: absolute;
+    /* Changed from relative to absolute to match frame behavior */
     overflow-y: auto;
 }
 

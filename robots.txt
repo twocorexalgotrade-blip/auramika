@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /SwarnaSetu_Server/
+Disallow: /admin/
+Disallow: /api/
+
+Sitemap: https://auramika.com/sitemap.xml

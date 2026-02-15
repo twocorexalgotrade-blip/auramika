@@ -325,7 +325,7 @@ function updateHeaderVisibility() {
     const header = document.getElementById('appHeader');
     if (!header) return;
 
-    if (currentFrame >= 2) {
+    if (currentFrame >= 1) { // Changed from >= 2 to >= 1
         header.classList.remove('hidden');
         console.log('📍 Header visible (Frame ' + currentFrame + ')');
     } else {

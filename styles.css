@@ -214,11 +214,14 @@ body {
 /* Hero Card - Landscape 16:9 */
 .hero-card {
     position: absolute;
-    top: 210px;
-    right: 100px;
-    width: 550px;
-    height: 309px;
-    /* 16:9 aspect ratio */
+    top: 120px;
+    /* Moved up from 210px */
+    right: 50px;
+    /* Moved closer to edge */
+    width: 450px;
+    /* Reduced from 550px */
+    height: 253px;
+    /* Maintain 16:9 ratio */
     background: rgba(245, 243, 238, 0.15);
     backdrop-filter: blur(40px) saturate(180%);
     -webkit-backdrop-filter: blur(40px) saturate(180%);
@@ -235,6 +238,8 @@ body {
     animation: slideInRight 0.8s ease-out 0.2s both;
     display: flex;
     flex-direction: row;
+    z-index: 10;
+    /* Ensure it's above other elements */
 }
 
 .hero-card:hover {
@@ -424,8 +429,8 @@ body {
 /* Product Grid */
 .product-grid {
     position: absolute;
-    top: 350px;
-    /* Moved up from 570px */
+    top: 400px;
+    /* Positioned below hero card (120px + 253px + 27px spacing) */
     left: 72%;
     transform: translateX(-50%);
     display: grid;
@@ -434,6 +439,8 @@ body {
     width: 750px;
     max-width: calc(100vw - 500px);
     /* Ensure it doesn't overlap stand */
+    z-index: 5;
+    /* Below hero card */
 }
 
 .grid-item {

@@ -424,7 +424,8 @@ body {
 /* Product Grid */
 .product-grid {
     position: absolute;
-    top: 570px;
+    top: 350px;
+    /* Moved up from 570px */
     left: 72%;
     transform: translateX(-50%);
     display: grid;

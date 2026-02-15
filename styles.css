@@ -452,8 +452,8 @@ body {
 /* Product Grid */
 .product-grid {
     position: absolute;
-    top: 400px;
-    /* Positioned below hero card (120px + 253px + 27px spacing) */
+    top: 440px;
+    /* Moved down from 400px (120px + 293px + 27px spacing) */
     left: 72%;
     transform: translateX(-50%);
     display: grid;

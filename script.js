@@ -1,7 +1,7 @@
 // ===== CONFIGURATION =====
 const VIDEO_PATHS = {
     t1: 'web asset/t1.mp4',
-    t1Reverse: 'web asset/t1 - REVERSE.mp4',
+    t1Reverse: 'web asset/t1 - REVERSE1 .mp4',
     t2: 'web asset/t3.mp4',
     t2Reverse: 'web asset/t3 - REVERSE.mp4',
     t3: 'web asset/t4.mp4',

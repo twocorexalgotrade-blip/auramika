@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Face Scanner - V3 FAST</title>
+    <link rel="stylesheet" href="ar-styles.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .test-container {
+            text-align: center;
+            color: white;
+        }
+
+        .test-btn {
+            background: linear-gradient(135deg, #C9A961 0%, #B8935A 100%);
+            color: white;
+            border: none;
+            padding: 20px 40px;
+            font-size: 1.5rem;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(201, 169, 97, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .test-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(201, 169, 97, 0.5);
+        }
+
+        h1 {
+            margin-bottom: 10px;
+            font-size: 2rem;
+        }
+
+        .subtitle {
+            color: #4CD964;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="test-container">
+        <h1>🗿 3D Face Scanner</h1>
+        <p class="subtitle">V3 - Canvas Brightness Control</p>
+        <button class="test-btn" onclick="startFaceScanV3()">🚀 Launch Scanner</button>
+    </div>
+
+    <div id="arModal" class="ar-modal">
+        <div class="ar-header">
+            <button class="ar-close" onclick="location.reload()">✕</button>
+            <h2>3D Face Scanner</h2>
+            <div class="ar-actions">
+                <button class="ar-scan-btn" onclick="startFaceScanV3()">🗿 Scan</button>
+            </div>
+        </div>
+
+        <div class="ar-container">
+            <div id="threeContainer" class="three-container hidden"></div>
+
+            <div id="scanOverlay" class="scan-overlay hidden">
+                <div class="scan-ring-container">
+                    <svg class="scan-ring-svg" viewBox="0 0 100 100">
+                        <circle class="scan-ring-bg" cx="50" cy="50" r="45" />
+                    </svg>
+                </div>
+
+                <h2 id="scanInstruction">Position Face</h2>
+                <p id="scanStatus">Ready...</p>
+            </div>
+
+            <div class="ar-camera-container">
+                <video id="arVideo" autoplay playsinline style="display:none;"></video>
+                <canvas id="arCanvas" style="display:none;"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@vladmandic/face-api/dist/face-api.min.js"></script>
+    <script src="face-scanner-v3.js"></script>
+</body>
+
+</html>

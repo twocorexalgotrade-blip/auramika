@@ -1,0 +1,1212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SWARNA SETU | Luxury Jewelry</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Montserrat:wght@300;400;500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="ar-styles.css">
+    <link rel="stylesheet" href="custom-order.css">
+    <link rel="stylesheet" href="checkout.css">
+
+    <!-- MediaPipe Face Mesh for Production AR -->
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh/face_mesh.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js" crossorigin="anonymous"></script>
+    <!-- Three.js for 3D Face Scanner -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+</head>
+
+<body>
+    <!-- Global Header -->
+    <header id="appHeader" class="app-header hidden">
+        <nav>
+            <ul class="nav-links">
+                <li><a href="#" onclick="goToFrame(1); return false;">HOME</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropbtn">CATEGORY ▾</a>
+                    <div class="dropdown-content">
+                        <a href="#" onclick="goToFrame(3); return false;">EARRINGS</a>
+                        <a href="#" onclick="goToFrame(4); return false;">NECKLACES</a>
+                        <a href="#" onclick="goToFrame(5); return false;">RINGS</a>
+                        <a href="#" onclick="goToFrame(6); return false;">BRACELETS</a>
+                        <a href="#" onclick="goToFrame(7); return false;">BANGLES</a>
+                        <a href="#" onclick="goToFrame(8); return false;">CHAINS</a>
+                        <a href="#" onclick="goToFrame(9); return false;">STATEMENT NECKLACES</a>
+                        <a href="#" onclick="goToCustomOrder(); return false;"
+                            style="color: #C9A961; font-weight: 600;">CUSTOM ORDER ✨</a>
+                    </div>
+                </li>
+                <li><a href="#" id="nav-store-link" onclick="goToFrame(10); return false;">STORE</a></li>
+                <!-- <li><a href="#" onclick="goToFrame(12); return false;">PROFILE</a></li> -->
+                <li><a href="#" onclick="openCart(); return false;">CART (0)</a></li>
+            </ul>
+        </nav>
+    </header>
+
+
+    <!-- Main Container -->
+    <div class="main-container" id="mainContainer">
+        <!-- Frame 1: 3.jpeg (Was Frame 2) -->
+        <div class="frame active" id="frame1" data-frame="1">
+            <img src="web asset/3.jpeg" alt="Frame 1" class="frame-image">
+        </div>
+
+        <!-- Frame 2: 4.jpeg (Was Frame 3) -->
+        <div class="frame" id="frame2" data-frame="2">
+            <img src="web asset/4.jpeg" alt="Frame 2" class="frame-image">
+        </div>
+
+        <!-- Frame 3: 5.jpeg (Earrings) -->
+        <div class="frame" id="frame3" data-frame="3">
+            <img src="web asset/5.jpeg" alt="Frame 3" class="frame-image">
+
+            <!-- Product Showcase Overlay -->
+            <div class="product-showcase">
+                <!-- Heading -->
+                <div class="showcase-heading">
+                    <h1>EXQUISITE EARRINGS</h1>
+                    <p>Handcrafted luxury pieces</p>
+                </div>
+
+                <!-- Hero Card - Landscape 16:9 -->
+                <div class="hero-card">
+                    <button class="btn-like-hero" onclick="toggleLike(this)">❤</button>
+                    <div class="hero-image">
+                        <img src="web asset/products/champagne_gold_hoops.png" alt="Champagne Gold Hoops">
+                    </div>
+                    <div class="hero-content">
+                        <div class="hero-badge">FEATURED</div>
+                        <h2>Champagne Gold Hoops</h2>
+                        <p class="hero-collection">Heritage Collection</p>
+                        <p class="hero-description">Elegant 22K gold earrings with intricate filigree work and pearl
+                            accents. Handcrafted by master artisans.</p>
+                        <div class="hero-actions">
+                            <button class="btn-primary">View Details</button>
+                            <button class="btn-secondary">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product Grid -->
+                <div class="product-grid">
+                    <div class="grid-item">
+                        <button class="btn-like-grid" onclick="toggleLike(this)">❤</button>
+                        <div class="grid-image">
+                            <img src="web asset/products/diamond_studs.png" alt="Diamond Studs">
+                        </div>
+                        <p>Diamond Studs</p>
+                    </div>
+                    <div class="grid-item">
+                        <button class="btn-like-grid" onclick="toggleLike(this)">❤</button>
+                        <div class="grid-image">
+                            <img src="web asset/products/pearl_drops.png" alt="Pearl Drops">
+                        </div>
+                        <p>Pearl Drops</p>
+                    </div>
+                    <div class="grid-item">
+                        <button class="btn-like-grid" onclick="toggleLike(this)">❤</button>
+                        <div class="grid-image">
+                            <img src="web asset/products/gold_chandbalis.png" alt="Gold Chandbalis">
+                        </div>
+                        <p>Gold Chandbalis</p>
+                    </div>
+                    <div class="grid-item">
+                        <button class="btn-like-grid" onclick="toggleLike(this)">❤</button>
+                        <div class="grid-image">
+                            <img src="web asset/products/temple_jewelry.png" alt="Temple Jewelry">
+                        </div>
+                        <p>Temple Jewelry</p>
+                    </div>
+                </div>
+
+                <!-- See All Button -->
+                <button class="btn-see-all" onclick="goToFrame(15)">See All Earrings →</button>
+            </div>
+        </div>
+
+        <!-- Frame 4 -->
+        <div class="frame frame-4" id="frame4">
+            <div class="product-showcase">
+                <div class="showcase-heading">
+                    <h1>EXQUISITE NECKLACES</h1>
+                    <p>Grace your neckline with timeless beauty</p>
+                </div>
+
+                <!-- Hero Card - Landscape 16:9 -->
+                <div class="hero-card">
+                    <div class="hero-image">
+                        <img src="web asset/products/diamond_necklace.png" alt="Diamond Pendant">
+                    </div>
+                    <div class="hero-content">
+                        <div class="hero-badge">NEW ARRIVAL</div>
+                        <h2>Diamond Pendant</h2>
+                        <p class="hero-collection">Heirloom Series</p>
+                        <p class="hero-description">An intricate platinum pendant adorned with marquise diamonds,
+                            suspended on a delicate chain.</p>
+                        <div class="hero-actions">
+                            <button class="btn-primary">View Details</button>
+                            <button class="btn-secondary">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product Grid -->
+                <div class="product-grid">
+                    <div class="grid-item">
+                        <div class="grid-image">
+                            <img src="web asset/products/gold_chain.png" alt="Gold Chain">
+                        </div>
+                        <p>Gold Chain</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="grid-image">
+                            <img src="web asset/products/diamond_tennis.png" alt="Diamond Tennis">
+                        </div>
+                        <p>Diamond Tennis</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="grid-image">
+                            <img src="web asset/products/rose_gold_pendant.png" alt="Rose Gold Heart">
+                        </div>
+                        <p>Rose Gold Heart</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="grid-image">
+                            <img src="web asset/products/crystal_choker.png" alt="Crystal Choker">
+                        </div>
+                        <p>Crystal Choker</p>
+                    </div>
+                </div>
+
+                <!-- See All Button -->
+                <button class="btn-see-all">See All Necklaces →</button>
+            </div>
+        </div>
+
+        <!-- Frame 5 -->
+        <div class="frame frame-5" id="frame5">
+            <div class="product-showcase">
+                <div class="showcase-heading">
+                    <h1>RADIANT RINGS</h1>
+                    <p>Symbols of eternal love and elegance</p>
+                </div>
+
+                <!-- Hero Card - Landscape 16:9 -->
+                <div class="hero-card">
+                    <div class="hero-image">
+                        <img src="web asset/products/diamond_solitaire.png" alt="Diamond Solitaire">
+                    </div>
+                    <div class="hero-content">
+                        <div class="hero-badge">BESTSELLER</div>
+                        <h2>Diamond Solitaire</h2>
+                        <p class="hero-collection">Engagement Series</p>
+                        <p class="hero-description">A timeless classic featuring a brilliant cut solitaire diamond on a
+                            platinum band.</p>
+                        <div class="hero-actions">
+                            <button class="btn-primary">View Details</button>
+                            <button class="btn-secondary">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product Grid -->
+                <div class="product-grid">
+                    <div class="grid-item">
+                        <div class="grid-image">
+                            <img src="web asset/products/gold_band.png" alt="Gold Band">
+                        </div>
+                        <p>Gold Band</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="grid-image">
+                            <img src="web asset/products/rose_gold_stack.png" alt="Rose Gold Stack">
+                        </div>
+                        <p>Rose Gold Stack</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="grid-image">
+                            <img src="web asset/products/sapphire_ring.png" alt="Sapphire Royal">
+                        </div>
+                        <p>Sapphire Royal</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="grid-image">
+                            <img src="web asset/products/platinum_band.png" alt="Platinum Eternity">
+                        </div>
+                        <p>Platinum Eternity</p>
+                    </div>
+                </div>
+
+                <!-- See All Button -->
+                <button class="btn-see-all">See All Rings →</button>
+            </div>
+        </div>
+
+        <!-- Frame 6 -->
+        <div class="frame frame-6" id="frame6">
+            <div class="product-showcase">
+                <div class="showcase-heading">
+                    <h1>TIMELESS BRACELETS</h1>
+                    <p>Adorn your wrist with elegance</p>
+                </div>
+
+                <!-- Hero Card -->
+                <div class="hero-card">
+                    <div class="hero-image">
+                        <img src="web asset/products/diamond_bracelet_hero.png" alt="Diamond Platinum Bracelet">
+                    </div>
+                    <div class="hero-content">
+                        <div class="hero-badge">BESTSELLER</div>
+                        <h2>Platinum Weave</h2>
+                        <p class="hero-collection">Vogue Series</p>
+                        <p class="hero-description">An intricate interwoven design of platinum and brilliant diamonds,
+                            creating a seamless flow of light.</p>
+                        <div class="hero-actions">
+                            <button class="btn-primary">View Details</button>
+                            <button class="btn-secondary">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product Grid -->
+                <div class="product-grid">
+                    <div class="grid-item">
+                        <div class="grid-image">
+                            <img src="web asset/products/gold_bangle.png" alt="Royal Bangle">
+                        </div>
+                        <p>Royal Bangle</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="grid-image">
+                            <img src="web asset/products/charm_bracelet.png" alt="Charm Bracelet">
+                        </div>
+                        <p>Luxury Charm</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="grid-image">
+                            <img src="web asset/products/gold_cuff.png" alt="Hammered Cuff">
+                        </div>
+                        <p>Hammered Cuff</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="grid-image">
+                            <img src="web asset/products/diamond_tennis_bracelet.png" alt="Classic Tennis">
+                        </div>
+                        <p>Classic Tennis</p>
+                    </div>
+                </div>
+
+                <!-- See All Button -->
+                <button class="btn-see-all">See All Bracelets →</button>
+            </div>
+        </div>
+
+        <!-- Frame 7 -->
+        <div class="frame frame-7" id="frame7">
+            <div class="product-showcase">
+                <div class="showcase-heading">
+                    <h1>TRADITIONAL BANGLES</h1>
+                    <p>Heritage on your wrist</p>
+                </div>
+
+                <!-- Hero Card -->
+                <div class="hero-card">
+                    <div class="hero-image">
+                        <img src="web asset/products/antique_gold_bangle.png" alt="Temple Masterpiece">
+                    </div>
+                    <div class="hero-content">
+                        <div class="hero-badge">LIMITED EDITION</div>
+                        <h2>Temple Masterpiece</h2>
+                        <p class="hero-collection">Heritage Series</p>
+                        <p class="hero-description">An exquisite antique gold bangle featuring intricate divine motifs,
+                            handcrafted for royalty.</p>
+                        <div class="hero-actions">
+                            <button class="btn-primary">View Details</button>
+                            <button class="btn-secondary">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product Grid -->
+                <div class="product-grid">
+                    <div class="grid-item">
+                        <div class="grid-image">
+                            <img src="web asset/products/gold_bangle.png" alt="Classic Gold">
+                        </div>
+                        <p>Classic Gold</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="grid-image">
+                            <img src="web asset/products/diamond_bangle_set.png" alt="Diamond Pair">
+                        </div>
+                        <p>Diamond Pair</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="grid-image">
+                            <img src="web asset/products/glass_bangle_stack.png" alt="Bridal Chooda">
+                        </div>
+                        <p>Bridal Chooda</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="grid-image">
+                            <img src="web asset/products/gold_cuff.png" alt="Hammered Cuff">
+                        </div>
+                        <p>Hammered Cuff</p>
+                    </div>
+                </div>
+
+                <!-- See All Button -->
+                <button class="btn-see-all">See All Bangles →</button>
+            </div>
+        </div>
+
+        <!-- Frame 8 -->
+        <div class="frame frame-8" id="frame8">
+            <div class="product-showcase">
+                <div class="showcase-heading">
+                    <h1>EXQUISITE CHAINS</h1>
+                    <p>Sophistication in every link</p>
+                </div>
+
+                <!-- Hero Card -->
+                <div class="hero-card">
+                    <div class="hero-image">
+                        <img src="web asset/products/platinum_chain_hero.png" alt="Platinum Eternity">
+                    </div>
+                    <div class="hero-content">
+                        <div class="hero-badge">BESTSELLER</div>
+                        <h2>Platinum Eternity</h2>
+                        <p class="hero-collection">Vogue Series</p>
+                        <p class="hero-description">A stunning platinum chain accented with brilliance, defining modern
+                            luxury.</p>
+                        <div class="hero-actions">
+                            <button class="btn-primary">View Details</button>
+                            <button class="btn-secondary">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product Grid -->
+                <div class="product-grid">
+                    <div class="grid-item">
+                        <div class="grid-image">
+                            <img src="web asset/products/gold_chain.png" alt="Classic Gold">
+                        </div>
+                        <p>Classic Gold</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="grid-image">
+                            <img src="web asset/products/thick_gold_chain.png" alt="Bold Cuban">
+                        </div>
+                        <p>Bold Cuban</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="grid-image">
+                            <img src="web asset/products/rose_gold_chain.png" alt="Delicate Rose">
+                        </div>
+                        <p>Delicate Rose</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="grid-image">
+                            <img src="web asset/products/diamond_tennis.png" alt="Tennis Chain">
+                        </div>
+                        <p>Tennis Chain</p>
+                    </div>
+                </div>
+
+                <!-- See All Button -->
+                <button class="btn-see-all">See All Chains →</button>
+            </div>
+        </div>
+
+        <!-- Frame 9 -->
+        <div class="frame frame-9" id="frame9">
+            <div class="product-showcase">
+                <div class="showcase-heading">
+                    <h1>STATEMENT NECKLACES</h1>
+                    <p>Unforgettable elegance</p>
+                </div>
+
+                <!-- Hero Card -->
+                <div class="hero-card">
+                    <div class="hero-image">
+                        <img src="web asset/products/emerald_necklace_hero.png" alt="Royal Emerald">
+                    </div>
+                    <div class="hero-content">
+                        <div class="hero-badge">ONE OF A KIND</div>
+                        <h2>Royal Emerald</h2>
+                        <p class="hero-collection">Majesty Series</p>
+                        <p class="hero-description">A breathtaking emerald and diamond necklace, fit for royalty and
+                            designed to mesmerize.</p>
+                        <div class="hero-actions">
+                            <button class="btn-primary">View Details</button>
+                            <button class="btn-secondary">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product Grid -->
+                <div class="product-grid">
+                    <div class="grid-item">
+                        <div class="grid-image">
+                            <img src="web asset/products/ruby_pendant.png" alt="Ruby Elegance">
+                        </div>
+                        <p>Ruby Elegance</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="grid-image">
+                            <img src="web asset/products/diamond_necklace.png" alt="Diamond Pendant">
+                        </div>
+                        <p>Diamond Pendant</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="grid-image">
+                            <img src="web asset/products/crystal_choker.png" alt="Crystal Choker">
+                        </div>
+                        <p>Crystal Choker</p>
+                    </div>
+                    <div class="grid-item">
+                        <div class="grid-image">
+                            <img src="web asset/products/rose_gold_pendant.png" alt="Rose Gold Heart">
+                        </div>
+                        <p>Rose Gold Heart</p>
+                    </div>
+                </div>
+
+                <!-- See All Button -->
+                <button class="btn-see-all">See All Necklaces →</button>
+            </div>
+        </div>
+
+        <!-- Frame 10: Featured Jewelers -->
+        <div class="frame frame-10" id="frame10">
+            <div class="product-showcase">
+                <div class="header-content">
+                    <h1>FEATURED JEWELERS</h1>
+                    <p>Unforgettable Elegance</p>
+                </div>
+
+                <div class="jeweler-grid">
+                    <!-- Card 1 -->
+                    <div class="jeweler-card">
+                        <div class="logo-wrapper"><img src="web asset/logos/sagar_gold.png" alt="Sagar Gold"
+                                class="jeweler-logo"></div>
+                        <div class="jeweler-info">
+                            <h3>SAGAR GOLD</h3>
+                            <p class="location">Mumbai, India</p>
+                            <p class="specialty">Expertise: Gold Chains</p>
+                        </div>
+                        <div class="feature-drawer">
+                            <div class="drawer-hero-image">
+                                <img src="web asset/products/gold_chain.png" alt="Featured Piece">
+                            </div>
+                            <div class="drawer-hero-content">
+                                <div class="hero-badge">SIGNATURE PIECE</div>
+                                <h2>Gold Chain Collection</h2>
+                                <p class="hero-collection">Premium Series</p>
+                                <p class="hero-description">Exquisite handcrafted gold chains showcasing traditional
+                                    artistry and modern elegance.</p>
+                                <div class="hero-actions">
+                                    <button class="btn-primary">View Details</button>
+                                    <button class="btn-secondary">Add to Cart</button>
+                                    <button class="btn-shop"
+                                        onclick="event.stopPropagation(); goToShop('store1', 'SAGAR GOLD')">Go to
+                                        Shop</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card 2 -->
+                    <div class="jeweler-card">
+                        <div class="logo-wrapper"><img src="web asset/logos/shree_hari.png" alt="Shree Hari Jewellers"
+                                class="jeweler-logo"></div>
+                        <div class="jeweler-info">
+                            <h3>SHREE HARI</h3>
+                            <p class="location">Jaipur, Rajasthan</p>
+                            <p class="specialty">Expertise: Polki & Jadau</p>
+                        </div>
+                        <div class="feature-drawer">
+                            <div class="drawer-hero-image">
+                                <img src="web asset/products/ruby_pendant.png" alt="Featured Piece">
+                            </div>
+                            <div class="drawer-hero-content">
+                                <div class="hero-badge">SIGNATURE PIECE</div>
+                                <h2>Polki & Jadau Masterpieces</h2>
+                                <p class="hero-collection">Royal Collection</p>
+                                <p class="hero-description">Traditional Rajasthani jewelry featuring intricate polki
+                                    work and precious gemstones.</p>
+                                <div class="hero-actions">
+                                    <button class="btn-primary">View Details</button>
+                                    <button class="btn-secondary">Add to Cart</button>
+                                    <button class="btn-shop"
+                                        onclick="event.stopPropagation(); goToShop('store2', 'SHREE HARI')">Go to
+                                        Shop</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card 3 -->
+                    <div class="jeweler-card">
+                        <div class="logo-wrapper"><img src="web asset/logos/story_varanasi.png"
+                                alt="The Story of Varanasi" class="jeweler-logo"></div>
+                        <div class="jeweler-info">
+                            <h3>STORY OF VARANASI</h3>
+                            <p class="location">Varanasi, UP</p>
+                            <p class="specialty">Expertise: Temple Jewelry</p>
+                        </div>
+                        <div class="feature-drawer">
+                            <div class="drawer-hero-image">
+                                <img src="web asset/products/temple_jewelry.png" alt="Featured Piece">
+                            </div>
+                            <div class="drawer-hero-content">
+                                <div class="hero-badge">SIGNATURE PIECE</div>
+                                <h2>Temple Jewelry Heritage</h2>
+                                <p class="hero-collection">Sacred Series</p>
+                                <p class="hero-description">Authentic temple jewelry inspired by ancient Indian
+                                    craftsmanship and divine motifs.</p>
+                                <div class="hero-actions">
+                                    <button class="btn-primary">View Details</button>
+                                    <button class="btn-secondary">Add to Cart</button>
+                                    <button class="btn-shop"
+                                        onclick="event.stopPropagation(); goToShop('store3', 'STORY OF VARANASI')">Go to
+                                        Shop</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card 4 -->
+                    <div class="jeweler-card">
+                        <div class="logo-wrapper"><img src="web asset/logos/diamonds_kp.png" alt="Diamonds of K.P"
+                                class="jeweler-logo"></div>
+                        <div class="jeweler-info">
+                            <h3>DIAMONDS OF K.P</h3>
+                            <p class="location">Surat, Gujarat</p>
+                            <p class="specialty">Expertise: Solitaires</p>
+                        </div>
+                        <div class="feature-drawer">
+                            <div class="drawer-hero-image">
+                                <img src="web asset/products/diamond_solitaire.png" alt="Featured Piece">
+                            </div>
+                            <div class="drawer-hero-content">
+                                <div class="hero-badge">SIGNATURE PIECE</div>
+                                <h2>Solitaire Collection</h2>
+                                <p class="hero-collection">Forever Series</p>
+                                <p class="hero-description">Timeless diamond solitaires that speak the language of
+                                    eternal love.</p>
+                                <div class="hero-actions">
+                                    <button class="btn-primary">View Details</button>
+                                    <button class="btn-secondary">Add to Cart</button>
+                                    <button class="btn-shop"
+                                        onclick="event.stopPropagation(); goToShop('store4', 'DIAMONDS OF K.P')">Go to
+                                        Shop</button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Particle Canvas -->
+                        <canvas id="goldDustCanvas10" class="gold-dust-canvas"
+                            style="position: absolute; top:0; left:0; width:100%; height:100%; z-index: 1; pointer-events: none;"></canvas>
+                    </div>
+                    <!-- End Card 4 -->
+                    <!-- Card 5 -->
+                    <div class="jeweler-card">
+                        <div class="logo-wrapper"><img src="web asset/logos/nizams_jewels.png" alt="Nizam's Jewels"
+                                class="jeweler-logo"></div>
+                        <div class="jeweler-info">
+                            <h3>NIZAM'S JEWELS</h3>
+                            <p class="location">Hyderabad, Telangana</p>
+                            <p class="specialty">Expertise: Pearl Collections</p>
+                        </div>
+                        <div class="feature-drawer">
+                            <div class="drawer-hero-image">
+                                <img src="web asset/products/pearl_necklace.png" alt="Featured Piece">
+                            </div>
+                            <div class="drawer-hero-content">
+                                <div class="hero-badge">SIGNATURE PIECE</div>
+                                <h2>Pearl Elegance</h2>
+                                <p class="hero-collection">Classic Series</p>
+                                <p class="hero-description">Lustrous pearls handpicked for their exceptional quality and
+                                    timeless beauty.</p>
+                                <div class="hero-actions">
+                                    <button class="btn-primary">View Details</button>
+                                    <button class="btn-secondary">Add to Cart</button>
+                                    <button class="btn-shop"
+                                        onclick="event.stopPropagation(); goToShop('store5', 'NIZAM\'S JEWELS')">Go to
+                                        Shop</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card 6 -->
+                    <div class="jeweler-card">
+                        <div class="logo-wrapper"><img src="web asset/logos/svara_heritage.png" alt="Svara Heritage"
+                                class="jeweler-logo"></div>
+                        <div class="jeweler-info">
+                            <h3>SVARA HERITAGE</h3>
+                            <p class="location">Chennai, Tamil Nadu</p>
+                            <p class="specialty">Expertise: Antique Gold</p>
+                        </div>
+                        <div class="feature-drawer">
+                            <div class="drawer-hero-image">
+                                <img src="web asset/products/antique_gold_bangle.png" alt="Featured Piece">
+                            </div>
+                            <div class="drawer-hero-content">
+                                <div class="hero-badge">SIGNATURE PIECE</div>
+                                <h2>Antique Gold Bangles</h2>
+                                <p class="hero-collection">Heritage Collection</p>
+                                <p class="hero-description">Vintage-inspired bangles featuring traditional motifs and
+                                    exquisite gold work.</p>
+                                <div class="hero-actions">
+                                    <button class="btn-primary">View Details</button>
+                                    <button class="btn-secondary">Add to Cart</button>
+                                    <button class="btn-shop"
+                                        onclick="event.stopPropagation(); goToShop('store6', 'SVARA HERITAGE')">Go to
+                                        Shop</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card 7 -->
+                    <div class="jeweler-card">
+                        <div class="logo-wrapper"><img src="web asset/logos/ananya_creations.png" alt="Ananya Creations"
+                                class="jeweler-logo"></div>
+                        <div class="jeweler-info">
+                            <h3>ANANYA CREATIONS</h3>
+                            <p class="location">Bangalore, Karnataka</p>
+                            <p class="specialty">Expertise: Modern Fusion</p>
+                        </div>
+                        <div class="feature-drawer">
+                            <div class="drawer-hero-image">
+                                <img src="web asset/products/rose_gold_pendant.png" alt="Featured Piece">
+                            </div>
+                            <div class="drawer-hero-content">
+                                <div class="hero-badge">SIGNATURE PIECE</div>
+                                <h2>Contemporary Designs</h2>
+                                <p class="hero-collection">Modern Series</p>
+                                <p class="hero-description">Innovative rose gold pieces blending modern aesthetics with
+                                    traditional craftsmanship.</p>
+                                <div class="hero-actions">
+                                    <button class="btn-primary">View Details</button>
+                                    <button class="btn-secondary">Add to Cart</button>
+                                    <button class="btn-shop"
+                                        onclick="event.stopPropagation(); goToShop('store7', 'ANANYA CREATIONS')">Go to
+                                        Shop</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card 8 -->
+                    <div class="jeweler-card">
+                        <div class="logo-wrapper"><img src="web asset/logos/maharaja_diamonds.png"
+                                alt="Maharaja Diamonds" class="jeweler-logo"></div>
+                        <div class="jeweler-info">
+                            <h3>MAHARAJA DIAMONDS</h3>
+                            <p class="location">Delhi, India</p>
+                            <p class="specialty">Expertise: Royal Kundan</p>
+                        </div>
+                        <div class="feature-drawer">
+                            <div class="drawer-hero-image">
+                                <img src="web asset/products/ruby_pendant.png" alt="Featured Piece">
+                            </div>
+                            <div class="drawer-hero-content">
+                                <div class="hero-badge">SIGNATURE PIECE</div>
+                                <h2>Royal Gemstones</h2>
+                                <p class="hero-collection">Maharaja Collection</p>
+                                <p class="hero-description">Precious gemstones set in intricate designs fit for royalty.
+                                </p>
+                                <div class="hero-actions">
+                                    <button class="btn-primary">View Details</button>
+                                    <button class="btn-secondary">Add to Cart</button>
+                                    <button class="btn-shop"
+                                        onclick="event.stopPropagation(); goToShop('store8', 'MAHARAJA DIAMONDS')">Go to
+                                        Shop</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card 9 -->
+                    <div class="jeweler-card">
+                        <div class="logo-wrapper"><img src="web asset/logos/veda_gold.png" alt="Veda Gold"
+                                class="jeweler-logo">
+                        </div>
+                        <div class="jeweler-info">
+                            <h3>VEDA GOLD</h3>
+                            <p class="location">Kolkata, WB</p>
+                            <p class="specialty">Expertise: Filigree Art</p>
+                        </div>
+                        <div class="feature-drawer">
+                            <div class="drawer-hero-image">
+                                <img src="web asset/products/gold_band.png" alt="Featured Piece">
+                            </div>
+                            <div class="drawer-hero-content">
+                                <div class="hero-badge">SIGNATURE PIECE</div>
+                                <h2>Gold Bands & Rings</h2>
+                                <p class="hero-collection">Timeless Collection</p>
+                                <p class="hero-description">Classic gold bands crafted with precision for everyday
+                                    elegance.</p>
+                                <div class="hero-actions">
+                                    <button class="btn-primary">View Details</button>
+                                    <button class="btn-secondary">Add to Cart</button>
+                                    <button class="btn-shop"
+                                        onclick="event.stopPropagation(); goToShop('store9', 'VEDA GOLD')">Go to
+                                        Shop</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card 10 -->
+                    <div class="jeweler-card">
+                        <div class="logo-wrapper"><img src="web asset/logos/opulent_oudh.png" alt="Opulent Oudh"
+                                class="jeweler-logo"></div>
+                        <div class="jeweler-info">
+                            <h3>OPULENT OUDH</h3>
+                            <p class="location">Lucknow, UP</p>
+                            <p class="specialty">Expertise: Gemstones</p>
+                        </div>
+                        <div class="feature-drawer">
+                            <div class="drawer-hero-image">
+                                <img src="web asset/products/sapphire_ring.png" alt="Featured Piece">
+                            </div>
+                            <div class="drawer-hero-content">
+                                <div class="hero-badge">SIGNATURE PIECE</div>
+                                <h2>Gemstone Rings</h2>
+                                <p class="hero-collection">Precious Collection</p>
+                                <p class="hero-description">Exquisite rings featuring sapphires, emeralds, and other
+                                    precious stones.</p>
+                                <div class="hero-actions">
+                                    <button class="btn-primary">View Details</button>
+                                    <button class="btn-secondary">Add to Cart</button>
+                                    <button class="btn-shop"
+                                        onclick="event.stopPropagation(); goToShop('store10', 'OPULENT OUDH')">Go to
+                                        Shop</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- Close Jeweler Grid -->
+            <div style="height: 300px; min-height: 300px; width: 100%; flex-shrink: 0; display: block;">
+                &nbsp;</div>
+        </div>
+    </div>
+
+    <!-- Frame 11: Account Setup -->
+    <!-- Frame 11: Account Setup (REMOVED) -->
+    <!--
+    <div class="frame" id="frame11" data-frame="11">
+        <div class="account-setup-background"></div>
+        <div class="account-setup-container">
+            <div class="setup-card glass-panel">
+                <h2>Welcome to Swarna Setu</h2>
+                <p class="subtitle">Experience the pinnacle of luxury</p>
+
+                <div id="step1" class="setup-step active">
+                    <div class="form-group">
+                        <label for="mobileNumber">Mobile Number</label>
+                        <input type="tel" id="mobileNumber" placeholder="+91 98765 43210">
+                    </div>
+                    <button class="btn-primary btn-full" onclick="checkMobile()">Continue</button>
+                </div>
+
+                <div id="step2" class="setup-step hidden">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="title">Title</label>
+                            <select id="title">
+                                <option value="Mr">Mr.</option>
+                                <option value="Ms">Ms.</option>
+                                <option value="Mrs">Mrs.</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="gender">Gender</label>
+                            <select id="gender">
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="firstName">First Name</label>
+                            <input type="text" id="firstName" placeholder="First Name">
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">Last Name</label>
+                            <input type="text" id="lastName" placeholder="Last Name">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="dob">Date of Birth</label>
+                        <input type="date" id="dob">
+                    </div>
+                    <button class="btn-primary btn-full" onclick="completeProfile()">Complete Setup</button>
+                </div>
+
+                <p id="setupMessage" class="setup-message hidden"></p>
+            </div>
+        </div>
+    </div>
+    -->
+
+    <!-- Frame 12: Shop Page -->
+    <div class="frame" id="frame12" data-frame="12">
+        <div class="shop-page-container">
+            <div class="shop-header">
+                <div class="shop-banner" id="shopBanner"></div>
+                <button class="back-btn" onclick="goToFrame(10)">← Back to Directory</button>
+                <div class="shop-info-card glass-panel">
+                    <div class="shop-logo-wrapper">
+                        <img src="" alt="Shop Logo" class="shop-logo" id="shopLogo">
+                    </div>
+                    <div class="shop-details">
+                        <h2 id="shopName">Shop Name</h2>
+                        <p class="shop-address" id="shopAddress">Location, City</p>
+                        <div class="shop-rating">
+                            <span class="stars">★★★★★</span>
+                            <span id="shopRating">4.8</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="shop-content">
+                <h3 class="section-title">Latest Collections</h3>
+                <div class="shop-product-grid" id="shopProductGrid">
+                    <!-- Products injected via JS -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Frame 13: Product Detail Page -->
+    <div class="frame" id="frame13" data-frame="13">
+        <div class="product-detail-page">
+            <button class="back-btn" onclick="history.back()">← Back</button>
+
+            <div class="product-detail-container">
+                <!-- Left: Image Gallery -->
+                <div class="product-gallery">
+                    <div class="main-image-wrapper">
+                        <img id="productMainImage" src="" alt="Product Image">
+                    </div>
+                    <div class="thumbnail-strip" id="productThumbnails">
+                        <!-- Thumbnails rendered by JS -->
+                    </div>
+                </div>
+
+                <!-- Right: Product Info -->
+                <div class="product-info">
+                    <h1 id="productName">Product Name</h1>
+                    <div class="product-price" id="productPrice">₹0</div>
+                    <div class="product-rating">
+                        <span class="stars">★★★★★</span>
+                        <span>(4.8/5)</span>
+                    </div>
+
+                    <div class="product-description" id="productDescription">
+                        Product description will appear here.
+                    </div>
+
+                    <div class="product-specs">
+                        <div class="spec-item">
+                            <span class="spec-label">Weight:</span>
+                            <span class="spec-value" id="productWeight">-</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Purity:</span>
+                            <span class="spec-value" id="productPurity">-</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Category:</span>
+                            <span class="spec-value" id="productCategory">-</span>
+                        </div>
+                    </div>
+
+                    <div class="product-actions">
+                        <div class="try-on-options">
+                            <button class="btn-ar" id="tryInARBtn" onclick="openARView()">
+                                <span class="ar-icon">👁️</span> Live AR Try-On
+                            </button>
+                            <button class="btn-ar btn-avatar" id="createAvatarBtn" onclick="startFaceScan()">
+                                <span class="ar-icon">🗿</span> Create 3D Avatar
+                            </button>
+                        </div>
+                        <button class="btn-primary btn-add-to-cart">Add to Cart</button>
+                        <button class="btn-secondary btn-buy-now">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Related Products Section -->
+            <div class="related-products-section">
+                <h2>You May Also Like</h2>
+                <div class="related-products-grid" id="relatedProductsGrid">
+                    <!-- Rendered by JS -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Frame 14: See All Products -->
+    <div class="frame frame-14" id="frame14" data-frame="14">
+        <button class="back-btn" onclick="goToFrame(3)"
+            style="top: 30px; left: 30px; position: absolute; z-index: 10;">← Back to Earrings</button>
+        <div class="see-all-container">
+            <div class="see-all-header">
+                <h1>EXCLUSIVE COLLECTION</h1>
+                <p>Discover Our Complete Range</p>
+            </div>
+            <div class="see-all-grid" id="seeAllGrid">
+                <!-- Products injected via JS -->
+            </div>
+        </div>
+        <!-- Particle Canvas -->
+        <canvas id="goldDustCanvas14" class="gold-dust-canvas"
+            style="position: absolute; top:0; left:0; width:100%; height:100%; z-index: 1; pointer-events: none;"></canvas>
+    </div>
+
+    <!-- Video Overlay for Transitions -->
+    <div class="video-overlay" id="videoOverlay">
+        <video id="transitionVideo" muted playsinline>
+            <source src="" type="video/mp4">
+        </video>
+    </div>
+    </div>
+
+    <!-- AR Try-On Modal -->
+    <div class="ar-modal" id="arModal">
+        <div class="ar-container">
+            <!-- AR Header Controls -->
+            <div class="ar-header">
+                <button class="ar-close-btn" onclick="closeARView()">✕</button>
+                <h3 class="ar-title">Try in AR</h3>
+                <div class="ar-actions">
+                    <button class="ar-scan-btn" onclick="startFaceScan()" title="Create 3D Avatar">🗿 Scan Me</button>
+                </div>
+            </div>
+
+            <!-- 3D Viewer Container (Hidden by default) -->
+            <div id="threeContainer" class="three-container hidden"></div>
+
+            <!-- Face Scanner Overlay (Hidden by default) -->
+            <div id="scanOverlay" class="scan-overlay hidden">
+                <!-- Circular Progress SVG -->
+                <div class="scan-ring-container">
+                    <svg class="scan-ring-svg" viewBox="0 0 100 100">
+                        <circle class="scan-ring-bg" cx="50" cy="50" r="45" />
+                        <mask id="scan-mask">
+                            <circle cx="50" cy="50" r="45" fill="white" />
+                            <!-- Reveal segments based on head rotation -->
+                            <!-- Actually, easier: build segments with JS -->
+                        </mask>
+                        <path id="scan-arc" class="scan-arc" d="" stroke="#C9A961" stroke-width="4" fill="none"
+                            stroke-linecap="round" />
+                    </svg>
+                    <div class="scan-guide-shape"></div>
+                </div>
+
+                <h2 id="scanInstruction">Position your face</h2>
+                <p id="scanStatus">Getting ready...</p>
+            </div>
+
+            <!-- AR Camera View -->
+            <div class="ar-camera-container">
+                <video id="arVideo" class="ar-video" autoplay playsinline></video>
+                <canvas id="arCanvas" class="ar-canvas"></canvas>
+
+                <!-- Loading Indicator -->
+                <div class="ar-loading" id="arLoading">
+                    <div class="ar-spinner"></div>
+                    <p>Initializing AR...</p>
+                </div>
+
+                <!-- Permission Request -->
+                <div class="ar-permission" id="arPermission" style="display: none;">
+                    <div class="permission-content">
+                        <span class="permission-icon">📷</span>
+                        <h4>Camera Access Required</h4>
+                        <p>Please allow camera access to try on jewelry virtually</p>
+                        <button class="btn-primary" onclick="requestCameraPermission()">Allow Camera</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AR Product Info -->
+            <div class="ar-product-info">
+                <div class="ar-product-details">
+                    <h4 id="arProductName">Product Name</h4>
+                    <p id="arProductPrice">₹0</p>
+                </div>
+                <div class="ar-size-control">
+                    <button class="ar-size-btn" onclick="adjustARSize(-0.1)">−</button>
+                    <span>Size</span>
+                    <button class="ar-size-btn" onclick="adjustARSize(0.1)">+</button>
+                </div>
+            </div>
+
+            <!-- AR Instructions -->
+            <div class="ar-instructions" id="arInstructions">
+                <p>Position your face in the frame for earrings/necklaces</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Hint -->
+    <div class="nav-hint" id="navHint">
+        Use ↑ ↓ arrow keys to navigate
+    </div>
+
+    <!-- Checkout Modal -->
+    <div id="checkoutModal" class="checkout-modal hidden">
+        <div class="checkout-container glass-panel">
+            <button class="close-btn" onclick="closeCheckout()">×</button>
+            <h2 id="checkoutTitle">Secure Checkout</h2>
+
+            <!-- Step 1: Selection -->
+            <div id="checkoutStep1">
+                <p class="checkout-subtitle">How would you like to proceed?</p>
+                <div class="buying-options">
+                    <div class="option-card" onclick="selectBuyingOption('reserve')">
+                        <div class="option-icon">🔒</div>
+                        <h3>Reserve Now</h3>
+                        <p>Pay 10% to book. Pickup at store.</p>
+                    </div>
+                    <div class="option-card" onclick="selectBuyingOption('buyNow')">
+                        <div class="option-icon">🛍️</div>
+                        <h3>Buy Now</h3>
+                        <p>Pay full amount. Home Delivery or Pickup.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 2: Details -->
+            <div id="checkoutStep2" class="hidden">
+                <button class="back-link" onclick="backToStep1()">← Back</button>
+                <div id="reserveDetails" class="hidden">
+                    <h3>Reserve Item</h3>
+                    <div class="summary-line">
+                        <span>Total Price:</span>
+                        <span id="reserveTotalDisplay">₹0</span>
+                    </div>
+                    <div class="summary-line highlight">
+                        <span>Token Amount (10%):</span>
+                        <span id="reserveTokenDisplay">₹0</span>
+                    </div>
+                    <div class="form-group">
+                        <label>Select Pickup Store</label>
+                        <select id="reserveStoreSelect" class="checkout-input">
+                            <option value="">Choose a store...</option>
+                        </select>
+                    </div>
+                    <button class="btn-primary btn-full" onclick="processPayment('reserve')">Pay Token &
+                        Reserve</button>
+                </div>
+
+                <div id="buyNowDetails" class="hidden">
+                    <h3>Complete Purchase</h3>
+                    <div class="summary-line highlight">
+                        <span>Total Payable:</span>
+                        <span id="buyNowTotalDisplay">₹0</span>
+                    </div>
+
+                    <div class="fulfillment-toggle">
+                        <button id="deliveryBtn" class="toggle-btn active" onclick="toggleFulfillment('delivery')">Home
+                            Delivery</button>
+                        <button id="pickupBtn" class="toggle-btn" onclick="toggleFulfillment('pickup')">Store
+                            Pickup</button>
+                    </div>
+
+                    <div id="deliveryForm">
+                        <input type="text" id="deliveryName" class="checkout-input" placeholder="Full Name">
+                        <input type="text" id="deliveryAddress" class="checkout-input" placeholder="Street Address">
+                        <div class="form-row">
+                            <input type="text" id="deliveryCity" class="checkout-input" placeholder="City">
+                            <input type="text" id="deliveryZip" class="checkout-input" placeholder="ZIP Code">
+                        </div>
+                        <input type="tel" id="deliveryMobile" class="checkout-input" placeholder="Mobile Number">
+                    </div>
+
+                    <div id="pickupForm" class="hidden">
+                        <div class="form-group">
+                            <label>Select Pickup Store</label>
+                            <select id="buyNowStoreSelect" class="checkout-input">
+                                <option value="">Choose a store...</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <button class="btn-primary btn-full" onclick="proceedToPayment()">Proceed to Pay</button>
+                </div>
+            </div>
+
+            <!-- Step 3: Payment Method -->
+            <div id="checkoutStep3" class="hidden">
+                <button class="back-link" onclick="backToStep2()">← Back to Details</button>
+                <h3>Select Payment Method</h3>
+                <p class="checkout-subtitle">Securely pay via</p>
+
+                <div class="payment-options">
+                    <div class="payment-card" onclick="selectPaymentGateway('razorpay')">
+                        <div class="payment-logo razorpay-logo">R</div>
+                        <div class="payment-info">
+                            <h4>Razorpay</h4>
+                            <p>UPI, Cards, Netbanking</p>
+                        </div>
+                    </div>
+                    <div class="payment-card" onclick="selectPaymentGateway('cashfree')">
+                        <div class="payment-logo cashfree-logo">C</div>
+                        <div class="payment-info">
+                            <h4>Cashfree</h4>
+                            <p>Wallet, PayLater, EMI</p>
+                        </div>
+                    </div>
+                </div>
+                <div id="paymentStatus" style="margin-top: 20px; text-align: center; color: #666; font-style: italic;">
+                </div>
+            </div>
+
+            <!-- Step 4: Success -->
+            <div id="checkoutSuccess" class="hidden" style="text-align: center;">
+                <div class="success-icon">✅</div>
+                <h3>Order Confirmed!</h3>
+                <p id="orderSuccessMessage">Thank you for your purchase.</p>
+                <button class="btn-primary" onclick="downloadBill()">📄 Download Invoice (PDF)</button>
+                <button class="btn-secondary" onclick="closeCheckout()">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js?v=2"></script>
+    <script src="router.js?v=2"></script>
+    <script src="ar-engine.js?v=9"></script>
+    <script src="custom-order.js?v=2"></script>
+    <script src="checkout-logic.js?v=2"></script>
+    <!-- AR Module Loading -->
+    <script type="module" src="face-scanner-v3.js?v=2"></script>
+    <script>
+        // Ensure V3 is the one running
+        window.startFaceScan = window.startFaceScanV3 || function () { alert('AR Module Loading...'); };
+
+        // Initialize Custom Order Wizard
+        window.onload = function () {
+            // Existing init logic handled in script.js
+            console.log("App Loaded");
+        };
+    </script>
+</body>
+
+</html>

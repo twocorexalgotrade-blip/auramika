@@ -1,0 +1,32 @@
+# Ignore mobile files
+FOR MOBILE/
+
+# Ignore large asset files
+*.3dm
+*.rar
+*.zip
+*.7z
+
+# Ignore node_modules
+node_modules/
+SwarnaSetu_Server/node_modules/
+
+# Ignore environment files
+.env
+SwarnaSetu_Server/.env
+
+# Ignore database files
+*.db
+*.sqlite
+*.sqlite3
+
+# Ignore logs
+*.log
+npm-debug.log*
+
+# Ignore OS files
+.DS_Store
+Thumbs.db
+
+# Ignore backup files
+*.backup

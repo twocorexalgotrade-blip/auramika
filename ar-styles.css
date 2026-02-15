@@ -1,0 +1,445 @@
+/* =========================================
+   AR TRY-ON FEATURE
+   ========================================= */
+
+/* AR Button */
+.btn-ar {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    padding: 16px 32px;
+    border-radius: 12px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+    width: 100%;
+    justify-content: center;
+}
+
+.btn-ar:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+}
+
+.ar-icon {
+    font-size: 1.2rem;
+}
+
+.try-on-options {
+    display: flex;
+    flex-direction: column;
+    /* Stack on all screens? Or row on desktop? */
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.btn-avatar {
+    background: linear-gradient(135deg, #1f1c2c 0%, #928DAB 100%);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.btn-avatar:hover {
+    box-shadow: 0 6px 20px rgba(100, 100, 100, 0.4);
+}
+
+/* AR Modal */
+.ar-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    z-index: 10000;
+    backdrop-filter: blur(10px);
+}
+
+.ar-modal.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ar-container {
+    width: 100%;
+    max-width: 100%;
+    /* Full width for desktop landscape */
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: #000;
+}
+
+/* AR Header */
+.ar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+}
+
+.ar-title {
+    color: white;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+.ar-close-btn,
+.ar-capture-btn {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ar-close-btn:hover,
+.ar-capture-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.1);
+}
+
+/* AR Camera Container */
+.ar-camera-container {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+    background: #000;
+}
+
+.ar-video,
+#arVideo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+    /* Mirror the video for natural feel */
+    transform: scaleX(-1);
+}
+
+.ar-canvas,
+#arCanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 2;
+    /* Canvas ABOVE video for face scanner */
+    display: block;
+    pointer-events: none;
+}
+
+/* AR Loading */
+.ar-loading {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+    z-index: 3;
+}
+
+.ar-spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    border-top-color: #C9A961;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 15px;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* AR Permission */
+.ar-permission {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 4;
+}
+
+.permission-content {
+    text-align: center;
+    color: white;
+    padding: 40px;
+    max-width: 400px;
+}
+
+.permission-icon {
+    font-size: 4rem;
+    display: block;
+    margin-bottom: 20px;
+}
+
+.permission-content h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+}
+
+.permission-content p {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 25px;
+}
+
+/* AR Product Info */
+.ar-product-info {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ar-product-details h4 {
+    color: white;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    margin: 0 0 5px 0;
+}
+
+.ar-product-details p {
+    color: #C9A961;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+/* AR Size Control */
+.ar-size-control {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.ar-size-btn {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.ar-size-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.1);
+}
+
+/* AR Instructions */
+.ar-instructions {
+    background: rgba(201, 169, 97, 0.2);
+    padding: 12px 20px;
+    text-align: center;
+}
+
+.ar-instructions p {
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.85rem;
+    margin: 0;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .ar-container {
+        max-width: 100%;
+    }
+
+    .ar-header {
+        padding: 15px;
+    }
+
+    .ar-title {
+        font-size: 1.2rem;
+    }
+
+    .btn-ar {
+        padding: 14px 24px;
+        font-size: 0.9rem;
+    }
+
+    .product-actions {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .btn-ar,
+    .btn-primary,
+    .btn-secondary {
+        width: 100%;
+    }
+}
+
+/* =========================================
+   3D FACE SCANNER
+   ========================================= */
+
+.ar-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.ar-scan-btn {
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.ar-scan-btn:hover {
+    background: rgba(255, 255, 255, 0.4);
+    transform: scale(1.05);
+}
+
+.three-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #111;
+    z-index: 5;
+}
+
+.scan-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    /* REMOVED BLACK OVERLAY */
+    z-index: 6;
+    pointer-events: none;
+    /* Let clicks pass through if needed */
+}
+
+/* Scan Guide Shape (Circular for Apple style) */
+.scan-ring-container {
+    position: relative;
+    width: 320px;
+    height: 320px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.scan-guide-shape {
+    width: 280px;
+    height: 280px;
+    border-radius: 50%;
+    /* Circle */
+    border: 3px dashed rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+    z-index: 10;
+}
+
+.scan-ring-svg {
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    width: 340px;
+    height: 340px;
+    z-index: 11;
+    pointer-events: none;
+    transform: rotate(-90deg);
+    /* Start at top */
+}
+
+.scan-ring-bg {
+    fill: none;
+    stroke: rgba(255, 255, 255, 0.1);
+    stroke-width: 4;
+}
+
+.scan-arc {
+    transition: stroke-dasharray 0.3s ease;
+}
+
+.scan-overlay h2 {
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.5rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+    margin-bottom: 10px;
+}
+
+.scan-overlay p {
+    color: #C9A961;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.scan-progress-bar {
+    width: 60%;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 3px;
+    margin-top: 20px;
+    overflow: hidden;
+}
+
+#scanProgress {
+    height: 100%;
+    background: #C9A961;
+    transition: width 0.3s ease;
+}
+
+.hidden {
+    display: none !important;
+}

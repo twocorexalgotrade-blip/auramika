@@ -904,6 +904,7 @@ function navigateDown() {
                 frame11.style.opacity = '1';
                 currentFrame = 11;
                 // removed updateDotState
+                pushHistoryState(11); // Ensure history is pushed
                 isTransitioning = false;
 
                 // Cleanup old frame
@@ -939,6 +940,7 @@ function navigateUp() {
                 frame9.scrollIntoView({ behavior: 'smooth' });
                 currentFrame = 9;
                 // updateDotState(9);
+                pushHistoryState(9); // Ensure history is pushed
                 isTransitioning = false;
                 frame11.style.display = 'none';
                 frame11.classList.remove('active');

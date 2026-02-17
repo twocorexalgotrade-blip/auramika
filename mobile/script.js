@@ -177,33 +177,53 @@ function findMockProduct(productId) {
     return null;
 }
 
-function goToProduct(productId, vendorName) {
+async function goToProduct(productId, vendorName) {
     console.log(`🔍 Opening product: ${productId}`);
 
     // Navigate first so the frame is visible immediately
     goToFrame(14);
 
-    // Find product in mock data
-    const product = findMockProduct(productId);
+    // Reset UI to loading state
+    document.getElementById('productName').textContent = 'Loading...';
+    document.getElementById('productPrice').textContent = '';
+    document.getElementById('productDescription').textContent = '';
+    document.getElementById('productMainImage').src = '/web_assets/products/placeholder.png';
+
+    let product = findMockProduct(productId);
+
     if (!product) {
-        console.warn('Product not found in mock data:', productId);
+        // Not in mock data? Try fetching from API
+        try {
+            const response = await fetch(`${API_BASE_URL}/api/products/${productId}`);
+            if (response.ok) {
+                product = await response.json();
+            }
+        } catch (err) {
+            console.error('Error fetching product details:', err);
+        }
+    }
+
+    if (!product) {
+        console.warn('Product not found (Mock or API):', productId);
+        document.getElementById('productName').textContent = 'Product Not Found';
         return;
     }
 
     // Populate product info
     document.getElementById('productName').textContent = product.name;
-    document.getElementById('productPrice').textContent = `₹${product.price.toLocaleString()}`;
-    document.getElementById('productDescription').textContent = product.description;
-    document.getElementById('productWeight').textContent = product.weight || '-';
+    document.getElementById('productPrice').textContent = `₹${(product.price || 0).toLocaleString()}`;
+    document.getElementById('productDescription').textContent = product.description || 'No description available.';
+    document.getElementById('productWeight').textContent = product.weight_grams ? `${product.weight_grams}g` : (product.weight || '-');
     document.getElementById('productPurity').textContent = product.purity || '-';
     document.getElementById('productCategory').textContent = product.category || '-';
 
     // Set main image
     const img = document.getElementById('productMainImage');
-    img.src = product.imageUrl;
+    img.src = product.image_url || product.imageUrl || '/web_assets/products/placeholder.png';
     img.alt = product.name;
 
     // Related products: others from same vendor, excluding this product
+    // For now, sticking to mock data for related items as API implementation for related items is separate
     const allVendorProducts = vendorName ? (mockProductData[vendorName] || []) : [];
     const related = allVendorProducts.filter(p => p.id !== productId).slice(0, 4);
     renderRelatedProducts(related, vendorName);

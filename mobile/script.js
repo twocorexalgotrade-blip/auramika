@@ -15,12 +15,12 @@ const VIDEO_PATHS = {
     t7: 'assets/t7.mp4',
     t7Reverse: 'assets/t7 - REVERSE .mp4',
     t8: 'assets/t8.mp4',
-    t8Reverse: 'web_asset/chain to necklace - REVERSE .mp4',
+    t8Reverse: '/web%20asset/chain to necklace - REVERSE .mp4',
     // Wait, list_dir didn't show t8 reverse. 
     // It showed t8.mp4.
     // I will just update t8.
-    t9: 'web_asset/chain to necklace.mp4',
-    t9Reverse: 'web_asset/chain to necklace - REVERSE .mp4',
+    t9: '/web%20asset/chain to necklace.mp4',
+    t9Reverse: '/web%20asset/chain to necklace - REVERSE .mp4',
     t10: null // No video for Frame 11 transition
 };
 
@@ -29,16 +29,16 @@ const API_BASE_URL = 'https://swarna-setu-api.onrender.com';
 // ===== MOCK PRODUCT DATA (shown when API is unavailable) =====
 const mockProductData = {
     'SAGAR GOLD': [
-        { id: 'sg1', name: 'Imperial Polki Necklace', price: 250000, weight: '45g', purity: '22K', category: 'Necklaces', imageUrl: 'web_asset/products/temple_jewelry.png', description: 'A masterpiece of unfinished diamonds set in 22K gold.' },
-        { id: 'sg2', name: 'Gold Chain Collection', price: 45000, weight: '8.5g', purity: '22K', category: 'Necklaces', imageUrl: 'web_asset/products/gold_chain.png', description: 'Exquisite handcrafted gold chains showing traditional artistry.' },
-        { id: 'sg3', name: 'Royal Kundan Choker', price: 180000, weight: '32g', purity: '22K', category: 'Necklaces', imageUrl: 'web_asset/products/crystal_choker.png', description: 'Regal choker necklace capable of elevating any bridal look.' },
-        { id: 'sg4', name: 'Sleek Gold Bangles', price: 68000, weight: '12.5g', purity: '22K', category: 'Bangles', imageUrl: 'web_asset/products/gold_bangle.png', description: 'Set of 4 daily wear gold bangles.' },
-        { id: 'sg5', name: 'Diamond Solitaire Ring', price: 320000, weight: '4.5g', purity: '18K', category: 'Rings', imageUrl: 'web_asset/products/diamond_solitaire.png', description: 'A timeless symbol of love, featuring a 1ct solitaire.' },
-        { id: 'sg6', name: 'Sapphire & Diamond Ring', price: 85000, weight: '5.2g', purity: '18K', category: 'Rings', imageUrl: 'web_asset/products/sapphire_ring.png', description: 'Deep blue sapphire surrounded by a halo of diamonds.' },
-        { id: 'sg7', name: 'Thick Gold Chain', price: 110000, weight: '22g', purity: '22K', category: 'Necklaces', imageUrl: 'web_asset/products/thick_gold_chain.png', description: 'Heavy weight gold chain statement piece.' },
-        { id: 'sg8', name: 'Rose Gold Pendant', price: 18000, weight: '3.5g', purity: '18K', category: 'Pendants', imageUrl: 'web_asset/products/rose_gold_pendant.png', description: 'Delicate rose gold pendant for modern elegance.' },
-        { id: 'sg9', name: 'Diamond Tennis Bracelet', price: 145000, weight: '10g', purity: '18K', category: 'Bracelets', imageUrl: 'web_asset/products/diamond_tennis_bracelet.png', description: 'A continuous line of brilliant-cut diamonds.' },
-        { id: 'sg10', name: 'Antique Gold Chandbalis', price: 55000, weight: '15g', purity: '22K', category: 'Earrings', imageUrl: 'web_asset/products/gold_chandbalis.png', description: 'Traditional earrings with intricate gold filigree work.' },
+        { id: 'sg1', name: 'Imperial Polki Necklace', price: 250000, weight: '45g', purity: '22K', category: 'Necklaces', imageUrl: '/web%20asset/products/temple_jewelry.png', description: 'A masterpiece of unfinished diamonds set in 22K gold.' },
+        { id: 'sg2', name: 'Gold Chain Collection', price: 45000, weight: '8.5g', purity: '22K', category: 'Necklaces', imageUrl: '/web%20asset/products/gold_chain.png', description: 'Exquisite handcrafted gold chains showing traditional artistry.' },
+        { id: 'sg3', name: 'Royal Kundan Choker', price: 180000, weight: '32g', purity: '22K', category: 'Necklaces', imageUrl: '/web%20asset/products/crystal_choker.png', description: 'Regal choker necklace capable of elevating any bridal look.' },
+        { id: 'sg4', name: 'Sleek Gold Bangles', price: 68000, weight: '12.5g', purity: '22K', category: 'Bangles', imageUrl: '/web%20asset/products/gold_bangle.png', description: 'Set of 4 daily wear gold bangles.' },
+        { id: 'sg5', name: 'Diamond Solitaire Ring', price: 320000, weight: '4.5g', purity: '18K', category: 'Rings', imageUrl: '/web%20asset/products/diamond_solitaire.png', description: 'A timeless symbol of love, featuring a 1ct solitaire.' },
+        { id: 'sg6', name: 'Sapphire & Diamond Ring', price: 85000, weight: '5.2g', purity: '18K', category: 'Rings', imageUrl: '/web%20asset/products/sapphire_ring.png', description: 'Deep blue sapphire surrounded by a halo of diamonds.' },
+        { id: 'sg7', name: 'Thick Gold Chain', price: 110000, weight: '22g', purity: '22K', category: 'Necklaces', imageUrl: '/web%20asset/products/thick_gold_chain.png', description: 'Heavy weight gold chain statement piece.' },
+        { id: 'sg8', name: 'Rose Gold Pendant', price: 18000, weight: '3.5g', purity: '18K', category: 'Pendants', imageUrl: '/web%20asset/products/rose_gold_pendant.png', description: 'Delicate rose gold pendant for modern elegance.' },
+        { id: 'sg9', name: 'Diamond Tennis Bracelet', price: 145000, weight: '10g', purity: '18K', category: 'Bracelets', imageUrl: '/web%20asset/products/diamond_tennis_bracelet.png', description: 'A continuous line of brilliant-cut diamonds.' },
+        { id: 'sg10', name: 'Antique Gold Chandbalis', price: 55000, weight: '15g', purity: '22K', category: 'Earrings', imageUrl: '/web%20asset/products/gold_chandbalis.png', description: 'Traditional earrings with intricate gold filigree work.' },
     ]
 };
 
@@ -90,10 +90,10 @@ async function goToShop(vendorId, vendorName) {
     if (shopNameEl) shopNameEl.textContent = vendorName || 'Exclusive Jeweler';
     if (shopAddressEl) shopAddressEl.textContent = '';
     if (shopLogo) {
-        shopLogo.src = `web_asset/logos/${vendorName.toLowerCase().replace(/ /g, '_').replace(/&/g, 'and')}.png`;
-        shopLogo.onerror = function () { this.src = 'web_asset/logos/shree_hari.png'; };
+        shopLogo.src = `/web%20asset/logos/${vendorName.toLowerCase().replace(/ /g, '_').replace(/&/g, 'and')}.png`;
+        shopLogo.onerror = function () { this.src = '/web%20asset/logos/shree_hari.png'; };
     }
-    if (shopBanner) shopBanner.style.backgroundImage = "url('web_asset/shop_banner_luxury.png')";
+    if (shopBanner) shopBanner.style.backgroundImage = "url('/web%20asset/shop_banner_luxury.png')";
 
     // Fetch products (non-blocking — page is already visible)
     const grid = document.getElementById('shopProductGrid');
@@ -223,7 +223,7 @@ function renderRelatedProducts(products, vendorName) {
         card.className = 'related-product-card';
         card.setAttribute('onclick', `goToProduct('${p.id}', '${vendorName}')`);
         card.innerHTML = `
-            <img src="${p.image_url || p.imageUrl || 'web_asset/products/placeholder.png'}" alt="${p.name}">
+            <img src="${p.image_url || p.imageUrl || '/web%20asset/products/placeholder.png'}" alt="${p.name}">
             <div class="card-info">
                 <h4>${p.name}</h4>
                 <div class="price">₹${(p.price || 0).toLocaleString()}</div>

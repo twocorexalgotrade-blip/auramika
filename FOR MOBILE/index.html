@@ -30,11 +30,12 @@
     <link rel="stylesheet" href="ar-styles.css">
 
     <!-- MediaPipe Face Mesh for Production AR -->
-    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh/face_mesh.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"
+        defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js" crossorigin="anonymous"
+        defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh/face_mesh.js" crossorigin="anonymous" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js" crossorigin="anonymous" defer></script>
 </head>
 
 <body>
@@ -102,7 +103,8 @@
 
             <!-- 2. Glass Thing (Visual) -->
             <div class="mobile-visual-container">
-                <img src="masset/f3.png" alt="Glass Display" style="width: 100%; height: 100%; object-fit: cover;">
+                <img src="masset/f3.png" alt="Glass Display" style="width: 100%; height: 100%; object-fit: cover;"
+                    loading="lazy">
             </div>
 
             <!-- 3. White BG Content -->
@@ -175,7 +177,8 @@
 
             <!-- 2. Visual Container -->
             <div class="mobile-visual-container">
-                <img src="masset/f4.png" alt="Necklace Display" style="width: 100%; height: 100%; object-fit: cover;">
+                <img src="masset/f4.png" alt="Necklace Display" style="width: 100%; height: 100%; object-fit: cover;"
+                    loading="lazy">
             </div>
 
             <!-- 3. Content Panel -->
@@ -246,7 +249,8 @@
 
             <!-- 2. Visual Container -->
             <div class="mobile-visual-container">
-                <img src="masset/f5.png" alt="Ring Display" style="width: 100%; height: 100%; object-fit: cover;">
+                <img src="masset/f5.png" alt="Ring Display" style="width: 100%; height: 100%; object-fit: cover;"
+                    loading="lazy">
             </div>
 
             <!-- 3. Content Panel -->
@@ -323,7 +327,8 @@
 
             <!-- 2. Visual Container -->
             <div class="mobile-visual-container">
-                <img src="masset/f6.png" alt="Bracelet Display" style="width: 100%; height: 100%; object-fit: cover;">
+                <img src="masset/f6.png" alt="Bracelet Display" style="width: 100%; height: 100%; object-fit: cover;"
+                    loading="lazy">
             </div>
 
             <!-- 3. Content Panel -->
@@ -400,7 +405,8 @@
 
             <!-- 2. Visual Container -->
             <div class="mobile-visual-container">
-                <img src="masset/7.png" alt="Bangle Display" style="width: 100%; height: 100%; object-fit: cover;">
+                <img src="masset/7.png" alt="Bangle Display" style="width: 100%; height: 100%; object-fit: cover;"
+                    loading="lazy">
             </div>
 
             <!-- 3. Content Panel -->
@@ -498,7 +504,8 @@
 
         <!-- 2. Visual Container -->
         <div class="mobile-visual-container">
-            <img src="masset/8.png" alt="Chain Display" style="width: 100%; height: 100%; object-fit: cover;">
+            <img src="masset/8.png" alt="Chain Display" style="width: 100%; height: 100%; object-fit: cover;"
+                loading="lazy">
         </div>
 
         <!-- 3. Content Panel -->
@@ -635,7 +642,7 @@
         <!-- Visual Container -->
         <div class="mobile-visual-container">
             <img src="masset/9.png" alt="Statement Necklace Display"
-                style="width: 100%; height: 100%; object-fit: cover;">
+                style="width: 100%; height: 100%; object-fit: cover;" loading="lazy">
         </div>
 
         <!-- Content Panel -->
@@ -713,7 +720,7 @@
                 <!-- Card 1 -->
                 <div class="jeweler-card" onclick="openJewelerShop(this)">
                     <div class="logo-wrapper"><img src="web_asset/logos/sagar_gold.png" alt="Sagar Gold"
-                            class="jeweler-logo"></div>
+                            class="jeweler-logo" loading="lazy"></div>
                     <div class="jeweler-info">
                         <h3>SAGAR GOLD</h3>
                         <p class="location">Mumbai, India</p>
@@ -721,7 +728,7 @@
                     </div>
                     <div class="feature-drawer">
                         <div class="drawer-hero-image">
-                            <img src="web_asset/products/gold_chain.png" alt="Featured Piece">
+                            <img src="web_asset/products/gold_chain.png" alt="Featured Piece" loading="lazy">
                         </div>
                         <div class="drawer-hero-content">
                             <div class="hero-badge">SIGNATURE PIECE</div>
@@ -740,7 +747,7 @@
                 <!-- Card 2 -->
                 <div class="jeweler-card" onclick="openJewelerShop(this)">
                     <div class="logo-wrapper"><img src="web_asset/logos/shree_hari.png" alt="Shree Hari Jewellers"
-                            class="jeweler-logo"></div>
+                            class="jeweler-logo" loading="lazy"></div>
                     <div class="jeweler-info">
                         <h3>SHREE HARI</h3>
                         <p class="location">Jaipur, Rajasthan</p>
@@ -748,7 +755,7 @@
                     </div>
                     <div class="feature-drawer">
                         <div class="drawer-hero-image">
-                            <img src="web_asset/products/ruby_pendant.png" alt="Featured Piece">
+                            <img src="web_asset/products/ruby_pendant.png" alt="Featured Piece" loading="lazy">
                         </div>
                         <div class="drawer-hero-content">
                             <div class="hero-badge">SIGNATURE PIECE</div>

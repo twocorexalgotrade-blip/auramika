@@ -24,21 +24,21 @@ const VIDEO_PATHS = {
     t10: null // No video for Frame 11 transition
 };
 
-const API_BASE_URL = 'http://192.168.1.35:3001';
+const API_BASE_URL = 'https://swarna-setu-api.onrender.com';
 
 // ===== MOCK PRODUCT DATA (shown when API is unavailable) =====
 const mockProductData = {
     'SAGAR GOLD': [
-        { id: 'sg1',  name: 'Imperial Polki Necklace',  price: 250000, weight: '45g', purity: '22K', category: 'Necklaces',  imageUrl: 'web_asset/products/temple_jewelry.png',          description: 'A masterpiece of unfinished diamonds set in 22K gold.' },
-        { id: 'sg2',  name: 'Gold Chain Collection',    price:  45000, weight: '8.5g', purity: '22K', category: 'Necklaces', imageUrl: 'web_asset/products/gold_chain.png',              description: 'Exquisite handcrafted gold chains showing traditional artistry.' },
-        { id: 'sg3',  name: 'Royal Kundan Choker',      price: 180000, weight: '32g', purity: '22K', category: 'Necklaces',  imageUrl: 'web_asset/products/crystal_choker.png',          description: 'Regal choker necklace capable of elevating any bridal look.' },
-        { id: 'sg4',  name: 'Sleek Gold Bangles',       price:  68000, weight: '12.5g', purity: '22K', category: 'Bangles', imageUrl: 'web_asset/products/gold_bangle.png',             description: 'Set of 4 daily wear gold bangles.' },
-        { id: 'sg5',  name: 'Diamond Solitaire Ring',   price: 320000, weight: '4.5g', purity: '18K', category: 'Rings',    imageUrl: 'web_asset/products/diamond_solitaire.png',       description: 'A timeless symbol of love, featuring a 1ct solitaire.' },
-        { id: 'sg6',  name: 'Sapphire & Diamond Ring',  price:  85000, weight: '5.2g', purity: '18K', category: 'Rings',    imageUrl: 'web_asset/products/sapphire_ring.png',           description: 'Deep blue sapphire surrounded by a halo of diamonds.' },
-        { id: 'sg7',  name: 'Thick Gold Chain',         price: 110000, weight: '22g', purity: '22K', category: 'Necklaces',  imageUrl: 'web_asset/products/thick_gold_chain.png',        description: 'Heavy weight gold chain statement piece.' },
-        { id: 'sg8',  name: 'Rose Gold Pendant',        price:  18000, weight: '3.5g', purity: '18K', category: 'Pendants', imageUrl: 'web_asset/products/rose_gold_pendant.png',       description: 'Delicate rose gold pendant for modern elegance.' },
-        { id: 'sg9',  name: 'Diamond Tennis Bracelet',  price: 145000, weight: '10g', purity: '18K', category: 'Bracelets', imageUrl: 'web_asset/products/diamond_tennis_bracelet.png', description: 'A continuous line of brilliant-cut diamonds.' },
-        { id: 'sg10', name: 'Antique Gold Chandbalis',  price:  55000, weight: '15g', purity: '22K', category: 'Earrings',  imageUrl: 'web_asset/products/gold_chandbalis.png',         description: 'Traditional earrings with intricate gold filigree work.' },
+        { id: 'sg1', name: 'Imperial Polki Necklace', price: 250000, weight: '45g', purity: '22K', category: 'Necklaces', imageUrl: 'web_asset/products/temple_jewelry.png', description: 'A masterpiece of unfinished diamonds set in 22K gold.' },
+        { id: 'sg2', name: 'Gold Chain Collection', price: 45000, weight: '8.5g', purity: '22K', category: 'Necklaces', imageUrl: 'web_asset/products/gold_chain.png', description: 'Exquisite handcrafted gold chains showing traditional artistry.' },
+        { id: 'sg3', name: 'Royal Kundan Choker', price: 180000, weight: '32g', purity: '22K', category: 'Necklaces', imageUrl: 'web_asset/products/crystal_choker.png', description: 'Regal choker necklace capable of elevating any bridal look.' },
+        { id: 'sg4', name: 'Sleek Gold Bangles', price: 68000, weight: '12.5g', purity: '22K', category: 'Bangles', imageUrl: 'web_asset/products/gold_bangle.png', description: 'Set of 4 daily wear gold bangles.' },
+        { id: 'sg5', name: 'Diamond Solitaire Ring', price: 320000, weight: '4.5g', purity: '18K', category: 'Rings', imageUrl: 'web_asset/products/diamond_solitaire.png', description: 'A timeless symbol of love, featuring a 1ct solitaire.' },
+        { id: 'sg6', name: 'Sapphire & Diamond Ring', price: 85000, weight: '5.2g', purity: '18K', category: 'Rings', imageUrl: 'web_asset/products/sapphire_ring.png', description: 'Deep blue sapphire surrounded by a halo of diamonds.' },
+        { id: 'sg7', name: 'Thick Gold Chain', price: 110000, weight: '22g', purity: '22K', category: 'Necklaces', imageUrl: 'web_asset/products/thick_gold_chain.png', description: 'Heavy weight gold chain statement piece.' },
+        { id: 'sg8', name: 'Rose Gold Pendant', price: 18000, weight: '3.5g', purity: '18K', category: 'Pendants', imageUrl: 'web_asset/products/rose_gold_pendant.png', description: 'Delicate rose gold pendant for modern elegance.' },
+        { id: 'sg9', name: 'Diamond Tennis Bracelet', price: 145000, weight: '10g', purity: '18K', category: 'Bracelets', imageUrl: 'web_asset/products/diamond_tennis_bracelet.png', description: 'A continuous line of brilliant-cut diamonds.' },
+        { id: 'sg10', name: 'Antique Gold Chandbalis', price: 55000, weight: '15g', purity: '22K', category: 'Earrings', imageUrl: 'web_asset/products/gold_chandbalis.png', description: 'Traditional earrings with intricate gold filigree work.' },
     ]
 };
 
@@ -248,13 +248,13 @@ function setupJewelerCardClicks() {
         let tapStartY = 0;
 
         // touchstart: record start position
-        card.addEventListener('touchstart', function(e) {
+        card.addEventListener('touchstart', function (e) {
             tapStartX = e.changedTouches[0].clientX;
             tapStartY = e.changedTouches[0].clientY;
         }, { passive: true });
 
         // touchend: if tiny movement → it's a tap, navigate to shop
-        card.addEventListener('touchend', function(e) {
+        card.addEventListener('touchend', function (e) {
             if (e.target.closest('button')) return;
             const dx = Math.abs(e.changedTouches[0].clientX - tapStartX);
             const dy = Math.abs(e.changedTouches[0].clientY - tapStartY);
@@ -264,7 +264,7 @@ function setupJewelerCardClicks() {
         }, { passive: true });
 
         // click: fallback for desktop (skipped on touch devices)
-        card.addEventListener('click', function(e) {
+        card.addEventListener('click', function (e) {
             if ('ontouchstart' in window) return;
             if (e.target.closest('button')) return;
             openJewelerShop(card);

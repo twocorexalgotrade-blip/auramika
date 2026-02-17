@@ -1,20 +1,20 @@
 // ===== CONFIGURATION =====
 const VIDEO_PATHS = {
-    t1: 'masset/t1.mp4',
-    t1Reverse: 'masset/t1 - REVERSE .mp4',
-    t2: 'masset/t2.mp4',
-    t2Reverse: 'masset/t2 - REVERSE .mp4',
-    t3: 'masset/T3.mp4',
-    t3Reverse: 'masset/T3 - REVERSE .mp4',
-    t4: 'masset/T4.mp4',
-    t4Reverse: 'masset/T4 - REVERSE .mp4',
-    t5: 'masset/T5.mp4',
-    t5Reverse: 'masset/T5 - REVERSE .mp4',
-    t6: 'masset/t6.mp4',
-    t6Reverse: 'masset/t6 - REVERSE - .mp4',
-    t7: 'masset/t7.mp4',
-    t7Reverse: 'masset/t7 - REVERSE .mp4',
-    t8: 'masset/t8.mp4',
+    t1: 'assets/t1.mp4',
+    t1Reverse: 'assets/t1 - REVERSE .mp4',
+    t2: 'assets/t2.mp4',
+    t2Reverse: 'assets/t2 - REVERSE .mp4',
+    t3: 'assets/T3.mp4',
+    t3Reverse: 'assets/T3 - REVERSE .mp4',
+    t4: 'assets/T4.mp4',
+    t4Reverse: 'assets/T4 - REVERSE .mp4',
+    t5: 'assets/T5.mp4',
+    t5Reverse: 'assets/T5 - REVERSE .mp4',
+    t6: 'assets/t6.mp4',
+    t6Reverse: 'assets/t6 - REVERSE - .mp4',
+    t7: 'assets/t7.mp4',
+    t7Reverse: 'assets/t7 - REVERSE .mp4',
+    t8: 'assets/t8.mp4',
     t8Reverse: 'web_asset/chain to necklace - REVERSE .mp4',
     // Wait, list_dir didn't show t8 reverse. 
     // It showed t8.mp4.
@@ -369,89 +369,32 @@ function goToFrame(targetFrame) {
 
     // Special handling for Home (Frame 1)
     if (targetFrame === 1) {
-        // Reset to Frame 1 without video transition
-        const currentFrameElement = productFrames[currentFrame];
-        if (currentFrameElement) {
-            currentFrameElement.classList.remove('active');
-            const currentContent = currentFrameElement.querySelector('.product-showcase');
-            if (currentContent) currentContent.style.opacity = '1'; // Reset opacity for next time
-        }
-
-        // Show Frame 1
-        const frame1 = productFrames[1];
-        if (frame1) {
-            frame1.classList.add('active');
-            frame1.style.opacity = '1';
-            frame1.style.visibility = 'visible';
-        }
-
-        currentFrame = 1;
-        updateHeaderVisibility(); // Ensure header is hidden
+        handleDirectNavigation(1);
         return;
     }
 
     // Special handling for Shop (Frame 13)
     if (targetFrame === 13) {
-        const currentFrameElement = productFrames[currentFrame];
-        if (currentFrameElement) {
-            currentFrameElement.classList.remove('active');
-            const currentContent = currentFrameElement.querySelector('.product-showcase');
-            if (currentContent) currentContent.style.opacity = '1';
-        }
-
-        const frame13 = productFrames[13];
-        if (frame13) {
-            frame13.classList.add('active');
-            frame13.style.opacity = '1';
-            frame13.style.visibility = 'visible';
-        }
-        currentFrame = 13;
-        updateHeaderVisibility();
+        handleDirectNavigation(13);
         return;
     }
 
     // Special handling for Profile (Frame 12)
     if (targetFrame === 12) {
-        const currentFrameElement = productFrames[currentFrame];
-        if (currentFrameElement) {
-            currentFrameElement.classList.remove('active');
-            const currentContent = currentFrameElement.querySelector('.product-showcase');
-            if (currentContent) currentContent.style.opacity = '1';
-        }
-
-        const frame12 = productFrames[12];
-        if (frame12) {
-            frame12.classList.add('active');
-            frame12.style.opacity = '1';
-            frame12.style.visibility = 'visible';
-            // Auto hide header for clean setup view or keep it? Let's keep it for now.
-        }
-        currentFrame = 12;
-        updateHeaderVisibility();
+        handleDirectNavigation(12);
         return;
     }
 
     // Special handling for Product Detail Page (Frame 14)
     if (targetFrame === 14) {
-        const currentFrameElement = productFrames[currentFrame];
-        if (currentFrameElement) {
-            currentFrameElement.classList.remove('active');
-        }
-
-        const frame14 = productFrames[14];
-        if (frame14) {
-            frame14.classList.add('active');
-            frame14.style.opacity = '1';
-            frame14.style.visibility = 'visible';
-        }
-        currentFrame = 14;
-        updateHeaderVisibility();
+        handleDirectNavigation(14);
         return;
     }
     const videoPath = categoryVideos[targetFrame];
 
     if (!videoPath) {
-        console.warn(`⚠️ No video path defined for frame ${targetFrame}`);
+        console.warn(`⚠️ No video path defined for frame ${targetFrame}, using direct nav`);
+        handleDirectNavigation(targetFrame);
         return;
     }
 
@@ -469,6 +412,39 @@ function goToFrame(targetFrame) {
     setTimeout(() => {
         playTransition(videoPath, targetFrame);
     }, 500);
+}
+
+// Helper for direct navigation without video (pushes history)
+function handleDirectNavigation(targetFrame) {
+    // Hide current
+    const currentFrameElement = productFrames[currentFrame];
+    if (currentFrameElement) currentFrameElement.classList.remove('active');
+
+    // Show target
+    const targetEl = productFrames[targetFrame];
+    if (targetEl) {
+        targetEl.classList.add('active');
+        targetEl.style.opacity = '1';
+        targetEl.style.visibility = 'visible';
+
+        // Reset opacity of children if needed
+        const content = targetEl.querySelector('.product-showcase');
+        if (content) content.style.opacity = '1';
+    }
+
+    currentFrame = targetFrame;
+    updateHeaderVisibility();
+    pushHistoryState(targetFrame);
+}
+
+function pushHistoryState(frame) {
+    if (!isPoppingState) {
+        const state = { frame: frame };
+        const title = `Frame ${frame}`;
+        const url = `?frame=${frame}`;
+        history.pushState(state, title, url);
+        console.log(`📌 Pushed state: Frame ${frame}`);
+    }
 }
 
 // ===== INITIALIZATION =====
@@ -507,6 +483,11 @@ function init() {
 
     // Initialize header visibility (hidden on Frame 1)
     updateHeaderVisibility();
+
+    // Set initial history state
+    if (!history.state) {
+        history.replaceState({ frame: 1 }, 'Frame 1', '?frame=1');
+    }
 
     // ===== MOBILE SCROLL VIDEO LOGIC =====
     if (window.matchMedia("(max-width: 768px)").matches) {
@@ -1123,7 +1104,90 @@ function completeTransition(targetFrame) {
             transitionCallback();
             transitionCallback = null;
         }
+
+        // PUSH STATE FOR BACK BUTTON
+        pushHistoryState(currentFrame);
+        isPoppingState = false; // Reset flag
+
     }, 100); // Increased delay slightly
+}
+
+// ===== HISTORY API HANDLER =====
+let isPoppingState = false;
+
+window.addEventListener('popstate', (event) => {
+    console.log('🔙 Back button pressed', event.state);
+
+    if (event.state && event.state.frame) {
+        const targetFrame = event.state.frame;
+
+        // If we are on a different frame, navigate to it
+        if (targetFrame !== currentFrame) {
+            isPoppingState = true; // Prevent pushing state again
+
+            // Determine direction
+            if (targetFrame < currentFrame) {
+                // Going back/up
+                // We need to trigger the REVERSE transition logic matching the current frame
+                // Example: Frame 2 -> Frame 1. 
+                // We need to look at logic in navigateUp()
+
+                // Since navigateUp() is complex with if/else, let's try to call it?
+                // But navigateUp only goes up by 1. 
+                // Popstate might jump multiple frames? Ideally not with single back click.
+
+                // For now, let's use goToFrame() which handles direct jumping, 
+                // BUT goToFrame currently uses "forward" video or no video.
+                // We want proper reverse transitions.
+
+                // Let's implement a smart reverse navigator
+                smartNavigateBack(targetFrame);
+
+            } else {
+                // Going forward (Forward button)
+                goToFrame(targetFrame);
+            }
+        }
+    } else {
+        // No state (e.g. back to initial load), go to Frame 1
+        if (currentFrame !== 1) {
+            isPoppingState = true;
+            smartNavigateBack(1);
+        }
+    }
+});
+
+function smartNavigateBack(targetFrame) {
+    // If adjacent frame, try to use specific video reverse
+    if (currentFrame === targetFrame + 1) {
+        // We are going 1 step back. 
+        // We can re-use the logic from navigateUp() but refactored, 
+        // OR just simulate navigateUp if we are sure.
+
+        // Actually, let's just use navigateUp() logic but generalized.
+        // It's hard to generalize the specific video paths without a map.
+        // Let's rely on navigateUp() for single steps.
+
+        // But wait, navigateUp() doesn't take arguments.
+        // We need to force it. 
+
+        if (currentFrame === 2 && targetFrame === 1) { playTransition(VIDEO_PATHS.t1Reverse, 1); }
+        else if (currentFrame === 3 && targetFrame === 2) { playTransition(VIDEO_PATHS.t2Reverse, 2); }
+        else if (currentFrame === 4 && targetFrame === 3) { playTransition(VIDEO_PATHS.t3Reverse, 3); }
+        else if (currentFrame === 5 && targetFrame === 4) { playTransition(VIDEO_PATHS.t4Reverse, 4); }
+        else if (currentFrame === 6 && targetFrame === 5) { playTransition(VIDEO_PATHS.t5Reverse, 5); }
+        else if (currentFrame === 7 && targetFrame === 6) { playTransition(VIDEO_PATHS.t6Reverse, 6); }
+        else if (currentFrame === 8 && targetFrame === 7) { playTransition(VIDEO_PATHS.t7Reverse, 7); }
+        else if (currentFrame === 9 && targetFrame === 8) { playTransition(VIDEO_PATHS.t8Reverse, 8); }
+        else {
+            // Fallback for non-video reverse or non-adjacent
+            goToFrame(targetFrame);
+        }
+
+    } else {
+        // Jump back (no video or standard fade)
+        goToFrame(targetFrame);
+    }
 }
 
 // ===== PRELOAD NEXT VIDEO =====

@@ -293,15 +293,15 @@
                     </div>
                     <div class="grid-item">
                         <div class="grid-image">
-                            <img src="/web_assets/products/sapphire_ring.png" alt="Sapphire Royal">
+                            <img src="/web_assets/products/thick_gold_chain.png" alt="Pearl Chain">
                         </div>
-                        <p>Sapphire Royal</p>
+                        <p>Pearl Chain</p>
                     </div>
                     <div class="grid-item">
                         <div class="grid-image">
-                            <img src="/web_assets/products/platinum_band.png" alt="Platinum Eternity">
+                            <img src="/web_assets/products/platinum_chain_hero.png" alt="Platinum Chain">
                         </div>
-                        <p>Platinum Eternity</p>
+                        <p>Platinum Chain</p>
                     </div>
                 </div>
 
@@ -365,13 +365,13 @@
                     </div>
                     <div class="grid-item">
                         <div class="grid-image">
-                            <img src="/web_assets/products/rose_gold_cuff.png" alt="Rose Gold Cuff">
+                            <img src="/web_assets/products/gold_cuff.png" alt="Rose Gold Cuff">
                         </div>
                         <p>Rose Gold Cuff</p>
                     </div>
                     <div class="grid-item">
                         <div class="grid-image">
-                            <img src="/web_assets/products/pearl_bracelet.png" alt="Pearl Strand">
+                            <img src="/web_assets/products/pearl_necklace.png" alt="Pearl Strand">
                         </div>
                         <p>Pearl Strand</p>
                     </div>
@@ -1220,11 +1220,13 @@
     <script src="ar-engine.js?v=21"></script>
     <script src="script.js?v=3"></script>
     <script>
+        // AGGRESSIVE CACHE BUSTING: Unregister all SWs to ensure fresh code
         if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/mobile/sw.js')
-                    .then(reg => console.log('✅ Service Worker Registered'))
-                    .catch(err => console.log('❌ Service Worker Error:', err));
+            navigator.serviceWorker.getRegistrations().then(function (registrations) {
+                for (let registration of registrations) {
+                    registration.unregister();
+                    console.log('🧹 Unregistered Service Worker to force update');
+                }
             });
         }
     </script>

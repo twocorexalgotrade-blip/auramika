@@ -83,7 +83,7 @@ for frame_num, cat_name, frame_id, bg_image, back_frame, products in categories:
     html = f'''
     <!-- Frame {frame_num}: All {cat_name.title()} Catalog -->
     <div class="frame" id="{frame_id}" data-frame="{frame_num}">
-        <img src="web asset/{bg_image}" alt="All {cat_name.title()}" class="frame-image">
+        <img src="web_assets/{bg_image}" alt="All {cat_name.title()}" class="frame-image">
         
         <div class="product-showcase">
             <div class="showcase-heading">
@@ -98,7 +98,7 @@ for frame_num, cat_name, frame_id, bg_image, back_frame, products in categories:
         html += f'''                <div class="grid-item">
                     <button class="btn-like-grid" onclick="toggleLike(this)">❤</button>
                     <div class="grid-image">
-                        <img src="web asset/products/{product_image}" alt="{product_name}">
+                        <img src="web_assets/products/{product_image}" alt="{product_name}">
                     </div>
                     <p>{product_name}</p>
                 </div>

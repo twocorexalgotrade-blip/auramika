@@ -1038,8 +1038,8 @@ function playTransition(videoPath, targetFrame, callback) {
     nextTargetFrame = targetFrame;
     transitionCallback = callback; // Store callback globally
 
-    // Set video source with cache busting (optional, but good for dev)
-    transitionVideo.src = videoPath + '?v=' + new Date().getTime();
+    // Set video source WITHOUT cache busting to allow browser caching
+    transitionVideo.src = videoPath;
     transitionVideo.load();
 
     // Show video overlay
@@ -1116,11 +1116,50 @@ function completeTransition(targetFrame) {
 
         console.log(`✅ Transition complete. Current frame: ${currentFrame}`);
 
+        // PRELOAD NEXT VIDEO LOGIC
+        preloadNextVideo(currentFrame);
+
         if (transitionCallback) {
             transitionCallback();
             transitionCallback = null;
         }
     }, 100); // Increased delay slightly
+}
+
+// ===== PRELOAD NEXT VIDEO =====
+function preloadNextVideo(frame) {
+    let nextVideoPath = null;
+
+    // Determine logical next video based on current frame
+    // This predicts the user is likely to go DOWN
+    if (frame === 1) nextVideoPath = VIDEO_PATHS.t1;
+    else if (frame === 2) nextVideoPath = VIDEO_PATHS.t2;
+    else if (frame === 3) nextVideoPath = VIDEO_PATHS.t3;
+    else if (frame === 4) nextVideoPath = VIDEO_PATHS.t4;
+    else if (frame === 5) nextVideoPath = VIDEO_PATHS.t5;
+    else if (frame === 6) nextVideoPath = VIDEO_PATHS.t6;
+    else if (frame === 7) nextVideoPath = VIDEO_PATHS.t7;
+    else if (frame === 8) nextVideoPath = VIDEO_PATHS.t8;
+    // Frame 9 -> 11 is manual fade, no video
+    // Frame 10 is skipped
+
+    if (nextVideoPath) {
+        console.log(`⏳ Preloading next video: ${nextVideoPath}`);
+        // Create a link preload tag if it doesn't exist
+        if (!document.querySelector(`link[href="${nextVideoPath}"]`)) {
+            const link = document.createElement('link');
+            link.rel = 'preload';
+            link.as = 'video';
+            link.href = nextVideoPath;
+            link.type = 'video/mp4';
+            document.head.appendChild(link);
+        }
+
+        // Also try to fetch it to populate disk cache
+        fetch(nextVideoPath).then(response => {
+            // Just fetching it puts it in cache
+        }).catch(err => console.log('Preload fetch ignored', err));
+    }
 }
 
 // ===== START =====

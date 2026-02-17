@@ -1,23 +1,23 @@
 // ===== CONFIGURATION =====
 const VIDEO_PATHS = {
-    t1: 'web_assets/t1.mp4',
-    t1Reverse: 'web_assets/t1 - REVERSE1 .mp4',
-    t2: 'web_assets/t3.mp4',
-    t2Reverse: 'web_assets/t3 - REVERSE.mp4',
-    t3: 'web_assets/t4.mp4',
-    t3Reverse: 'web_assets/t4 - REVERSE .mp4',
-    t4: 'web_assets/ta1.mp4',
-    t4Reverse: 'web_assets/ta1 - REVERSE .mp4',
-    t5: 'web_assets/t6.mp4',
-    t5Reverse: 'web_assets/t6 - REVERSE .mp4',
-    t6: 'web_assets/t7.mp4',
-    t6Reverse: 'web_assets/t7 - REVERSE .mp4',
-    t7: 'web_assets/bangles to chain.mp4',
-    t7Reverse: 'web_assets/bangles to chain - REVERSE .mp4',
-    t8: 'web_assets/chain to necklace.mp4',
-    t8Reverse: 'web_assets/chain to necklace - REVERSE .mp4',
+    t1: '/web_assets/t1.mp4',
+    t1Reverse: '/web_assets/t1 - REVERSE1 .mp4',
+    t2: '/web_assets/t3.mp4',
+    t2Reverse: '/web_assets/t3 - REVERSE.mp4',
+    t3: '/web_assets/t4.mp4',
+    t3Reverse: '/web_assets/t4 - REVERSE .mp4',
+    t4: '/web_assets/ta1.mp4',
+    t4Reverse: '/web_assets/ta1 - REVERSE .mp4',
+    t5: '/web_assets/t6.mp4',
+    t5Reverse: '/web_assets/t6 - REVERSE .mp4',
+    t6: '/web_assets/t7.mp4',
+    t6Reverse: '/web_assets/t7 - REVERSE .mp4',
+    t7: '/web_assets/bangles to chain.mp4',
+    t7Reverse: '/web_assets/bangles to chain - REVERSE .mp4',
+    t8: '/web_assets/chain to necklace.mp4',
+    t8Reverse: '/web_assets/chain to necklace - REVERSE .mp4',
     // t9 unused now? Keep as is or remove.
-    // t9: 'web_assets/chain to necklace.mp4', // Was duplicate? No, F9->F10 used t9.
+    // t9: '/web_assets/chain to necklace.mp4', // Was duplicate? No, F9->F10 used t9.
     // If F9 (Statement) -> F10 (Store) uses FADE, then t9 is unused.
     // But original F9 (Chains) -> F10 (Statement) used t9.
     // Original t9 was chain to necklace.
@@ -117,7 +117,7 @@ async function goToShop(vendorId, vendorName) {
         // Banner Image
         const banner = document.createElement('div');
         banner.className = 'shop-banner';
-        banner.style.backgroundImage = "url('web_assets/shop_banner_luxury.png')";
+        banner.style.backgroundImage = "url('/web_assets/shop_banner_luxury.png')";
 
         // Info Card
         const infoCard = document.createElement('div');
@@ -125,7 +125,7 @@ async function goToShop(vendorId, vendorName) {
 
         infoCard.innerHTML = `
             <div class="shop-logo-circle">
-                <img src="${vendorDetails.logo}" onerror="this.src='web_assets/logos/shree_hari.png'" alt="${vendorName}">
+                <img src="${vendorDetails.logo}" onerror="this.src='/web_assets/logos/shree_hari.png'" alt="${vendorName}">
             </div>
             <div class="shop-details">
                 <h1>${vendorName}</h1>
@@ -230,7 +230,7 @@ async function goToProduct(productId) {
         document.getElementById('productCategory').textContent = product.category || '-';
 
         // Set main image
-        const imageUrl = product.image_url || product.imageUrl || 'web_assets/products/placeholder.png';
+        const imageUrl = product.image_url || product.imageUrl || '/web_assets/products/placeholder.png';
         document.getElementById('productMainImage').src = imageUrl;
         document.getElementById('productMainImage').alt = product.name;
 
@@ -298,7 +298,7 @@ function renderRelatedProducts(products) {
         card.className = 'related-product-card';
         card.onclick = () => goToProduct(p.id);
         card.innerHTML = `
-            <img src="${p.image_url || p.imageUrl || 'web_assets/products/placeholder.png'}" alt="${p.name}">
+            <img src="${p.image_url || p.imageUrl || '/web_assets/products/placeholder.png'}" alt="${p.name}">
             <div class="card-info">
                 <h4>${p.name}</h4>
                 <div class="price">₹${(p.price || 0).toLocaleString()}</div>
@@ -1290,7 +1290,7 @@ function populateSeeAllPage() {
     grid.innerHTML = products.map((prod, i) => `
         <div class="see-all-item" style="animation-delay: ${i * 0.1}s">
             <div class="see-all-img-wrapper">
-                <img src="web_assets/products/${prod.img}" onerror="this.src='web_assets/products/champagne_gold_hoops.png'" alt="${prod.name}">
+                <img src="web_assets/products/${prod.img}" onerror="this.src='/web_assets/products/champagne_gold_hoops.png'" alt="${prod.name}">
             </div>
             <div class="see-all-info">
                 <h3>${prod.name}</h3>

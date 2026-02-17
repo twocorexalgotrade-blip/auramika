@@ -39,25 +39,25 @@ async function openARView() {
 
     if (productName.includes('Diamond Tennis Bracelet')) {
         console.log('✨ Using dedicated AR asset for Bracelet');
-        productImageSrc = '/web%20asset/AR/1.png';
+        productImageSrc = '/web_assets/AR/1.png';
         isPair = false;
     } else if (productName.includes('Rose Gold Pendant')) {
         console.log('✨ Using dedicated AR asset for Pendant');
-        productImageSrc = '/web%20asset/AR/2.png';
+        productImageSrc = '/web_assets/AR/2.png';
         isPair = false;
     } else if (productName.includes('Thick Gold Chain')) {
         console.log('✨ Using dedicated AR asset for Thick Gold Chain');
-        productImageSrc = '/web%20asset/AR/3.png';
+        productImageSrc = '/web_assets/AR/3.png';
         isPair = false;
     } else if (productName.includes('Antique Gold Chandbalis')) {
         console.log('✨ Using multi-perspective AR assets');
-        productImageSrc = '/web%20asset/products/chandbalis_front.png';
-        sideImageSrc = '/web%20asset/products/chandbalis_side.png';
+        productImageSrc = '/web_assets/products/chandbalis_front.png';
+        sideImageSrc = '/web_assets/products/chandbalis_side.png';
         isPair = false;
         useScreenBlending = false;
     } else if (productName.includes('Diamond Solitaire') || productName.includes('Studs')) {
         console.log('💎 Using transparent AR asset for Diamond Studs');
-        productImageSrc = '/web%20asset/products/diamond_studs_ar.png';
+        productImageSrc = '/web_assets/products/diamond_studs_ar.png';
         isPair = true;
         useScreenBlending = true;
     } else if (productCategory.toLowerCase().includes('earrings')) {

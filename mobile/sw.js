@@ -1,4 +1,4 @@
-const CACHE_NAME = 'swarna-setu-mobile-v1';
+const CACHE_NAME = 'swarna-setu-mobile-v2';
 const ASSETS_TO_CACHE = [
     '/mobile/',
     '/mobile/index.html',

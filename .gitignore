@@ -1,5 +1,4 @@
-# Ignore mobile files
-FOR MOBILE/
+
 
 # Ignore large asset files
 *.3dm

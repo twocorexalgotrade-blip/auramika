@@ -218,6 +218,36 @@ app.use(express.json({ limit: '50mb' }));
 
 // Serve static files from parent directory (for frontend) with caching
 const path = require('path');
+
+// ── Smart root: same URL, UI auto-switches by device ──────────────────────
+app.get('/', (req, res) => {
+    const ua = req.headers['user-agent'] || '';
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(ua)
+        || (/Macintosh/.test(ua) && /Touch/.test(ua)); // iPad iOS 13+
+
+    if (isMobile) {
+        // Inject <base href="/mobile/"> so all relative assets in FOR MOBILE resolve correctly
+        let html = fs.readFileSync(path.join(__dirname, '../FOR MOBILE/index.html'), 'utf8');
+        html = html.replace('<head>', '<head>\n    <base href="/mobile/">');
+        res.setHeader('Content-Type', 'text/html; charset=utf-8');
+        res.send(html);
+    } else {
+        res.sendFile(path.join(__dirname, '../index.html'));
+    }
+});
+
+// /mobile → serves FOR MOBILE directory assets (styles, scripts, images, videos)
+app.use('/mobile', express.static(path.join(__dirname, '../FOR MOBILE'), {
+    maxAge: '1d',
+    etag: true,
+    setHeaders: (res, filePath) => {
+        if (filePath.endsWith('.mp4') || filePath.endsWith('.png') || filePath.endsWith('.jpg')) {
+            res.setHeader('Cache-Control', 'public, max-age=604800');
+        }
+    }
+}));
+// ──────────────────────────────────────────────────────────────────────────
+
 app.use(express.static(path.join(__dirname, '..'), {
     maxAge: '1d', // Cache static files for 1 day
     etag: true,

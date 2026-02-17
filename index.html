@@ -5,6 +5,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <!-- Smart UI switch: mobile users reload → server serves mobile UI -->
+    <script>
+        (function () {
+            var ua = navigator.userAgent;
+            var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(ua)
+                || (navigator.maxTouchPoints > 1 && /Macintosh/.test(ua));
+
+            // Redirect to mobile site if on mobile device
+            if (isMobile) {
+                console.log('📱 Mobile device detected, redirecting to mobile site...');
+                window.location.replace('/FOR%20MOBILE/index.html');
+            }
+        })();
+    </script>
+
     <!-- Primary Meta Tags -->
     <title>Auramika - Luxury Gold Jewelry with AR Try-On | Mumbai</title>
     <meta name="title" content="Auramika - Luxury Gold Jewelry with AR Try-On | Mumbai">
@@ -1100,10 +1115,10 @@
     <!-- Frame 16: All Necklaces Catalog -->
     <div class="frame catalog-page" id="frame16" data-frame="16">
         <!-- Gold particles canvas will be injected here by JS -->
-        
+
         <div class="catalog-container">
             <button class="catalog-back-btn" onclick="goToFrame(4)">← Back to Necklaces</button>
-            
+
             <div class="catalog-header">
                 <h1 class="catalog-title">ALL NECKLACES</h1>
                 <p class="catalog-subtitle">Complete collection - 10 exquisite pieces</p>
@@ -1197,10 +1212,10 @@
     <!-- Frame 17: All Rings Catalog -->
     <div class="frame catalog-page" id="frame17" data-frame="17">
         <!-- Gold particles canvas will be injected here by JS -->
-        
+
         <div class="catalog-container">
             <button class="catalog-back-btn" onclick="goToFrame(5)">← Back to Rings</button>
-            
+
             <div class="catalog-header">
                 <h1 class="catalog-title">ALL RINGS</h1>
                 <p class="catalog-subtitle">Complete collection - 10 exquisite pieces</p>
@@ -1294,10 +1309,10 @@
     <!-- Frame 18: All Bracelets Catalog -->
     <div class="frame catalog-page" id="frame18" data-frame="18">
         <!-- Gold particles canvas will be injected here by JS -->
-        
+
         <div class="catalog-container">
             <button class="catalog-back-btn" onclick="goToFrame(6)">← Back to Bracelets</button>
-            
+
             <div class="catalog-header">
                 <h1 class="catalog-title">ALL BRACELETS</h1>
                 <p class="catalog-subtitle">Complete collection - 10 exquisite pieces</p>
@@ -1391,10 +1406,10 @@
     <!-- Frame 19: All Bangles Catalog -->
     <div class="frame catalog-page" id="frame19" data-frame="19">
         <!-- Gold particles canvas will be injected here by JS -->
-        
+
         <div class="catalog-container">
             <button class="catalog-back-btn" onclick="goToFrame(7)">← Back to Bangles</button>
-            
+
             <div class="catalog-header">
                 <h1 class="catalog-title">ALL BANGLES</h1>
                 <p class="catalog-subtitle">Complete collection - 10 exquisite pieces</p>
@@ -1488,10 +1503,10 @@
     <!-- Frame 20: All Chains Catalog -->
     <div class="frame catalog-page" id="frame20" data-frame="20">
         <!-- Gold particles canvas will be injected here by JS -->
-        
+
         <div class="catalog-container">
             <button class="catalog-back-btn" onclick="goToFrame(8)">← Back to Chains</button>
-            
+
             <div class="catalog-header">
                 <h1 class="catalog-title">ALL CHAINS</h1>
                 <p class="catalog-subtitle">Complete collection - 10 exquisite pieces</p>
@@ -1585,10 +1600,10 @@
     <!-- Frame 21: All Statement Necklaces Catalog -->
     <div class="frame catalog-page" id="frame21" data-frame="21">
         <!-- Gold particles canvas will be injected here by JS -->
-        
+
         <div class="catalog-container">
             <button class="catalog-back-btn" onclick="goToFrame(9)">← Back to Statement Necklaces</button>
-            
+
             <div class="catalog-header">
                 <h1 class="catalog-title">ALL STATEMENT NECKLACES</h1>
                 <p class="catalog-subtitle">Complete collection - 10 exquisite pieces</p>
